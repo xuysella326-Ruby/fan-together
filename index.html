@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夏日团建—FAN Together</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f4f0;
+            --bg-card: #ffffff;
+            --bg-section: #eeedea;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --text-muted: #999999;
+            --border: #e0dfdb;
+            --accent: #e8553a;
+            --accent-hover: #d14428;
+            --dot-color: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== 导航栏 ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 48px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--text-primary) !important;
+            color: #fff !important;
+            padding: 8px 18px;
+            border-radius: 0;
+            font-size: 0.82rem !important;
+            font-weight: 600 !important;
+            transition: opacity 0.2s;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.85;
+        }
+
+        /* ===== Hero 区域 ===== */
+        .hero {
+            text-align: center;
+            padding: 80px 48px 40px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .hero-title .outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-top: 20px;
+            line-height: 1.7;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .hero-cta:hover {
+            background: var(--accent-hover);
+        }
+
+        .hero-cta .icon-box {
+            display: none;
+        }
+
+        /* ===== 统计信息条 ===== */
+        .stats-bar {
+            background: var(--bg-section);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 40px 48px;
+        }
+
+        .stats-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ===== 方案卡片区域 ===== */
+        .section-title-area {
+            text-align: center;
+            padding: 80px 48px 20px;
+        }
+
+        .section-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+        }
+
+        .section-title .highlight {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .section-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 16px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .plans-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 48px 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .plan-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            transition: box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: transparent;
+            transition: background 0.3s;
+        }
+
+        .plan-card:hover::before {
+            background: var(--text-primary);
+        }
+
+        .plan-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .plan-number {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .plan-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .plan-keyword {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            padding: 5px 14px;
+            border-radius: 0;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .plan-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .plan-right {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .detail-icon {
+            display: none;
+        }
+
+        /* ===== 图片放置区 ===== */
+        .plan-image-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .image-placeholder {
+            aspect-ratio: 4 / 3;
+            background: var(--bg-section);
+            border: 2px dashed var(--border);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder:hover {
+            border-color: var(--text-muted);
+            background: #e8e7e3;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .image-placeholder-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .image-placeholder.has-image .image-placeholder-text {
+            display: none;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0);
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            transition: background 0.2s;
+            cursor: default;
+        }
+
+        .image-overlay:hover {
+            background: rgba(0,0,0,0.25);
+        }
+
+        .image-delete-btn {
+            display: none;
+            width: 26px;
+            height: 26px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: none;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin: 6px;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .image-overlay:hover .image-delete-btn {
+            display: flex;
+        }
+
+        .image-delete-btn:hover {
+            background: var(--accent);
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .detail-value {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .exhibition-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .exhibition-tag {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 0;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .plan-warning {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.82rem;
+        }
+
+        /* ===== 投票区域 ===== */
+        .vote-area {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .vote-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .vote-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border: 2px solid var(--text-primary);
+            border-radius: 0;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .vote-btn:hover {
+            background: var(--text-primary);
+            color: #fff;
+        }
+
+        .vote-btn:active {
+            transform: scale(0.97);
+        }
+
+        .vote-btn.voted {
+            background: var(--bg-section);
+            border-color: var(--border);
+            color: var(--text-muted);
+            cursor: default;
+        }
+
+        .vote-btn.voted:hover {
+            background: var(--bg-section);
+            color: var(--text-muted);
+        }
+
+        .vote-count-text {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .vote-count-text .num {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-right: 4px;
+        }
+
+        .vote-right {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .vote-bar-bg {
+            height: 4px;
+            background: var(--bg-section);
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .vote-bar-fill {
+            height: 100%;
+            background: var(--text-primary);
+            border-radius: 0;
+            transition: width 0.6s ease;
+            width: 0%;
+        }
+
+        .vote-percent {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-align: right;
+            font-weight: 500;
+        }
+
+        /* ===== 底部 ===== */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 48px;
+            text-align: center;
+        }
+
+        .footer-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 14px 24px;
+            border-radius: 0;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .footer-note .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 0;
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            margin-top: 24px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== 点阵装饰 ===== */
+        .dot-grid {
+            position: absolute;
+            opacity: 0.4;
+        }
+
+        .dot-grid-pattern {
+            display: grid;
+            grid-template-columns: repeat(10, 6px);
+            gap: 8px;
+        }
+
+        .dot-grid-pattern span {
+            width: 2px;
+            height: 2px;
+            background: var(--text-muted);
+            border-radius: 0;
+        }
+
+        /* ===== 姓名输入弹窗 ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            border-radius: 0;
+            padding: 40px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .modal-overlay.show .modal-box {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-emoji {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .modal-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+            text-align: center;
+        }
+
+        .modal-input:focus {
+            border-color: var(--text-primary);
+        }
+
+        .modal-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .modal-submit {
+            margin-top: 16px;
+            width: 100%;
+            padding: 14px;
+            background: var(--text-primary);
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            font-family: inherit;
+        }
+
+        .modal-submit:hover {
+            opacity: 0.85;
+        }
+
+        .modal-submit:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .modal-error {
+            color: var(--accent);
+            font-size: 0.78rem;
+            margin-top: 8px;
+            min-height: 20px;
+            font-weight: 500;
+        }
+
+        /* ===== 投票进度条 ===== */
+        .progress-banner {
+            background: var(--text-primary);
+            color: #fff;
+            padding: 12px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        .progress-bar-wrapper {
+            width: 200px;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 0;
+            transition: width 0.6s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            white-space: nowrap;
+        }
+
+        .progress-text .bold {
+            font-weight: 800;
+        }
+
+        /* ===== 当前用户标识 ===== */
+        .user-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 0;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .user-badge .user-dot {
+            width: 6px;
+            height: 6px;
+            background: #4caf50;
+            border-radius: 0;
+        }
+
+        /* ===== 投票结果面板 ===== */
+        .vote-results-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 48px 80px;
+        }
+
+        .results-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .results-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .results-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            background: var(--bg);
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .action-btn:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        .action-btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .action-btn.primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .result-column {
+            background: var(--bg-section);
+            border-radius: 0;
+            padding: 20px;
+        }
+
+        .result-column-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .result-column-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .result-column-count {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2px 10px;
+            border-radius: 0;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .voter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .voter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: var(--bg-card);
+            border-radius: 0;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .voter-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .voter-avatar.c1 { background: #e8553a; }
+        .voter-avatar.c2 { background: #3a7be8; }
+        .voter-avatar.c3 { background: #4caf50; }
+        .voter-avatar.c4 { background: #ff9800; }
+        .voter-avatar.c5 { background: #9c27b0; }
+        .voter-avatar.c6 { background: #00bcd4; }
+
+        .voter-empty {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .waiting-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 20px 0;
+        }
+
+        .waiting-dots span {
+            width: 6px;
+            height: 6px;
+            background: var(--text-muted);
+            border-radius: 0;
+            opacity: 0.3;
+        }
+
+        .results-footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .results-summary {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .results-summary .win {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ===== Toast ===== */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--text-primary);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 0;
+            font-size: 0.88rem;
+            font-weight: 500;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== 动画 ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .animate-in:nth-child(1) { animation-delay: 0.1s; }
+        .animate-in:nth-child(2) { animation-delay: 0.2s; }
+        .animate-in:nth-child(3) { animation-delay: 0.3s; }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 24px 30px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stats-bar {
+                padding: 30px 24px;
+            }
+
+            .stats-inner {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-title-area {
+                padding: 50px 24px 20px;
+            }
+
+            .plans-container {
+                padding: 24px;
+            }
+
+            .plan-card {
+                padding: 28px;
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .plan-image-area {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .vote-area {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .vote-right {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .footer {
+                padding: 30px 24px;
+            }
+
+            .progress-banner {
+                padding: 10px 24px;
+                flex-wrap: wrap;
+                font-size: 0.75rem;
+            }
+
+            .progress-bar-wrapper {
+                width: 120px;
+            }
+
+            .vote-results-section {
+                padding: 0 24px 60px;
+            }
+
+            .results-card {
+                padding: 24px;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 姓名输入弹窗 -->
+    <div class="modal-overlay" id="nameModal">
+        <div class="modal-box">
+            <div class="modal-emoji">🎯</div>
+            <div class="modal-title">先告诉我你是谁</div>
+            <div class="modal-desc">输入你的姓名后即可参与投票<br>每人只能投一次，请谨慎选择哦</div>
+            <input type="text" class="modal-input" id="nameInput" placeholder="输入你的姓名" maxlength="10" autocomplete="off">
+            <div class="modal-error" id="nameError"></div>
+            <button class="modal-submit" id="nameSubmit" onclick="submitName()" disabled>确认开始投票</button>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-logo">FAN Together</div>
+        <div class="nav-links">
+            <a href="#plans">方案</a>
+            <a href="#results">投票详情</a>
+            <span class="user-badge" id="userBadge" style="display:none">
+                <span class="user-dot"></span>
+                <span id="userBadgeName"></span>
+            </span>
+            <a href="javascript:void(0)" class="nav-cta" onclick="scrollToPlans()">开始投票</a>
+        </div>
+    </nav>
+
+    <!-- 投票进度条 -->
+    <div class="progress-banner">
+        <span class="progress-text">投票进度：<span class="bold" id="progressCount">0</span> / <span class="bold">20</span> 人已投票</span>
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar-inner" id="progressBar"></div>
+        </div>
+        <span class="progress-text" id="progressStatus">等待大家投票中...</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 class="hero-title animate-in">
+            夏日团建<br>
+            <span class="outline">FAN TOGETHER.</span>
+        </h1>
+        <p class="hero-subtitle animate-in">
+            2026年第一次团建开始啦<br>难得换脑，选你最想
+        </p>
+        <a href="#plans" class="hero-cta animate-in" onclick="scrollToPlans()">
+            开始投票
+        </a>
+    </section>
+
+    <!-- 统计条 -->
+    <div class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">精选方案</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="total-votes">0</div>
+                <div class="stat-label">已参与投票</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1</div>
+                <div class="stat-label">即将选定</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 方案区域 -->
+    <div class="section-title-area" id="plans">
+        <div class="section-eyebrow">Team Building 2026</div>
+        <h2 class="section-title">
+            选你最想<br>
+            <span class="highlight">一起出发</span>
+        </h2>
+        <p class="section-desc">三个精心策划的方案，每一个都有独特的魅力。投出你的选择，少数服从多数。</p>
+    </div>
+
+    <div class="plans-container">
+        <!-- 方案1 -->
+        <div class="plan-card animate-in">
+            <div class="plan-left">
+                <div class="plan-number">方案 01</div>
+                <h3 class="plan-name">阿那亚 · 海边文艺慢旅行</h3>
+                <div class="plan-keywords">
+                    <span class="plan-keyword">消散班味</span>
+                    <span class="plan-keyword">海边发呆</span>
+                    <span class="plan-keyword">情绪回血</span>
+                    <span class="plan-keyword">人生照片</span>
+                </div>
+                <p class="plan-desc">日落散步、团队小游戏、自由拍照、咖啡馆打卡、海边聚餐</p>
+            </div>
+            <div class="plan-right">
+                <div class="plan-image-area">
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">费用</div>
+                        <div class="detail-value">人均约 700-900 元</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">时间</div>
+                        <div class="detail-value">3天2晚（5月18日 - 5月20日）</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">地点</div>
+                        <div class="detail-value">秦皇岛 · 阿那亚</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">出行方式</div>
+                        <div class="detail-value">高铁约2小时 / 自驾约4小时</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">住宿</div>
+                        <div class="detail-value">阿那亚四期2栋别墅</div>
+                    </div>
+                </div>
+            </div>
+            <div class="vote-area">
+                <div class="vote-left">
+                    <button class="vote-btn" id="btn-1" onclick="vote(1)">投这个</button>
+                    <div class="vote-count-text"><span class="num" id="count-1">0</span>人选择</div>
+                </div>
+                <div class="vote-right">
+                    <div class="vote-bar-bg"><div class="vote-bar-fill" id="bar-1"></div></div>
+                    <div class="vote-percent" id="percent-1">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 方案2 -->
+        <div class="plan-card animate-in">
+            <div class="plan-left">
+                <div class="plan-number">方案 02</div>
+                <h3 class="plan-name">撒索民宿 · 山野松弛局</h3>
+                <div class="plan-keywords">
+                    <span class="plan-keyword">山里躺平</span>
+                    <span class="plan-keyword">集体放空</span>
+                    <span class="plan-keyword">BBQ自由</span>
+                    <span class="plan-keyword">氛围感拉满</span>
+                </div>
+                <p class="plan-desc">西山步道、湖边散步、拍照出片、自助烧烤、游泳、桌游互动</p>
+            </div>
+            <div class="plan-right">
+                <div class="plan-image-area">
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">费用</div>
+                        <div class="detail-value">人均约 400 元</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">时间</div>
+                        <div class="detail-value">2天1晚（5月18日 - 5月19日）</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">地点</div>
+                        <div class="detail-value">怀柔 · 雁栖湖</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">出行方式</div>
+                        <div class="detail-value">自驾出行</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">住宿</div>
+                        <div class="detail-value">享受整个独栋设计师民宿</div>
+                    </div>
+                </div>
+            </div>
+            <div class="vote-area">
+                <div class="vote-left">
+                    <button class="vote-btn" id="btn-2" onclick="vote(2)">投这个</button>
+                    <div class="vote-count-text"><span class="num" id="count-2">0</span>人选择</div>
+                </div>
+                <div class="vote-right">
+                    <div class="vote-bar-bg"><div class="vote-bar-fill" id="bar-2"></div></div>
+                    <div class="vote-percent" id="percent-2">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 方案3 -->
+        <div class="plan-card animate-in">
+            <div class="plan-left">
+                <div class="plan-number">方案 03</div>
+                <h3 class="plan-name">新疆伊犁 · 风景公路计划</h3>
+                <div class="plan-keywords">
+                    <span class="plan-keyword">享受自然</span>
+                    <span class="plan-keyword">草原续命</span>
+                    <span class="plan-keyword">公路电影感</span>
+                    <span class="plan-keyword">手机内存告急</span>
+                </div>
+                <p class="plan-desc">草原骑马、民族风旅拍、湖边露营、城市漫游、风景公路打卡</p>
+            </div>
+            <div class="plan-right">
+                <div class="plan-image-area">
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">费用</div>
+                        <div class="detail-value">人均约 6000 元</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">时间</div>
+                        <div class="detail-value">6天5晚（5月28日-6月02日）机票最便宜</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">行程路线</div>
+                        <div class="detail-value">
+                            D1 乌鲁木齐接机<br>
+                            D2 乌鲁木齐 → 独山子大峡谷 → 博乐<br>
+                            D3 博乐 → 赛里木湖环湖 → 果子沟大桥 → 六星街 → 伊宁<br>
+                            D4 伊宁 → 那拉提空中草原 → 花海那拉提 → 那拉提镇<br>
+                            D5 那拉提 → G218 → 天山胜利隧道 → 乌鲁木齐<br>
+                            D6 乌鲁木齐送机
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">费用包含</div>
+                        <div class="detail-value">
+                            26座2+1 × 4天（含司补、接送机）<br>
+                            含：保险、赛湖环游、行程所含景点门票 + 全程8间房
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">出行方式</div>
+                        <div class="detail-value">飞机 + 包车</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-content">
+                        <div class="detail-label">住宿</div>
+                        <div class="detail-value">酒店 & 民宿</div>
+                    </div>
+                </div>
+            </div>
+            <div class="vote-area">
+                <div class="vote-left">
+                    <button class="vote-btn" id="btn-3" onclick="vote(3)">投这个</button>
+                    <div class="vote-count-text"><span class="num" id="count-3">0</span>人选择</div>
+                </div>
+                <div class="vote-right">
+                    <div class="vote-bar-bg"><div class="vote-bar-fill" id="bar-3"></div></div>
+                    <div class="vote-percent" id="percent-3">0%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 投票结果详情 -->
+    <div class="vote-results-section" id="results">
+        <div class="results-card">
+            <div class="results-header">
+                <div class="results-title">投票详情</div>
+                <div class="results-actions">
+                    <button class="action-btn" onclick="copyShareLink()">复制投票链接</button>
+                    <button class="action-btn" onclick="exportResults()">导出结果</button>
+                    <button class="action-btn primary" onclick="resetMyVote()">重新投票</button>
+                </div>
+            </div>
+            <div class="results-grid">
+                <div class="result-column">
+                    <div class="result-column-header">
+                        <span class="result-column-title">阿那亚 · 海边文艺慢旅行</span>
+                        <span class="result-column-count" id="col-count-1">0票</span>
+                    </div>
+                    <div class="voter-list" id="voter-list-1">
+                        <div class="voter-empty">暂无投票</div>
+                    </div>
+                </div>
+                <div class="result-column">
+                    <div class="result-column-header">
+                        <span class="result-column-title">撒索民宿 · 山野松弛局</span>
+                        <span class="result-column-count" id="col-count-2">0票</span>
+                    </div>
+                    <div class="voter-list" id="voter-list-2">
+                        <div class="voter-empty">暂无投票</div>
+                    </div>
+                </div>
+                <div class="result-column">
+                    <div class="result-column-header">
+                        <span class="result-column-title">新疆伊犁 · 风景公路计划</span>
+                        <span class="result-column-count" id="col-count-3">0票</span>
+                    </div>
+                    <div class="voter-list" id="voter-list-3">
+                        <div class="voter-empty">暂无投票</div>
+                    </div>
+                </div>
+            </div>
+            <div class="results-footer">
+                <div class="results-summary" id="resultsSummary">等待投票中...</div>
+                <div class="results-summary" id="remainingVoters"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="footer-note">
+            <span class="dot"></span>
+            温馨提示：投票后可在群里看到实时结果，少数服从多数哦~
+        </div>
+        <div class="footer-bottom">
+            选你最想，一起出发！ — 夏日团建 2026
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ===== 配置 =====
+        const TOTAL_VOTERS = 20;
+        const STORAGE_KEY = 'fanTogether_votes';
+        const USER_KEY = 'fanTogether_user';
+        const PLAN_NAMES = { 1: '阿那亚 · 海边文艺慢旅行', 2: '撒索民宿 · 山野松弛局', 3: '新疆伊犁 · 风景公路计划' };
+        const AVATAR_COLORS = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
+
+        // ===== 数据管理 =====
+        // 投票数据结构: { voters: { "姓名": planId, ... } }
+        function getVoteData() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                const data = raw ? JSON.parse(raw) : { voters: {} };
+                // 也从 URL hash 合并数据
+                mergeFromHash(data);
+                return data;
+            } catch (e) {
+                return { voters: {} };
+            }
+        }
+
+        function saveVoteData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function getCurrentUser() {
+            return localStorage.getItem(USER_KEY) || '';
+        }
+
+        function setCurrentUser(name) {
+            localStorage.setItem(USER_KEY, name);
+        }
+
+        // ===== URL Hash 数据共享 =====
+        // 编码投票数据到 URL hash，方便分享
+        function encodeVotesToHash(data) {
+            try {
+                const encoded = btoa(encodeURIComponent(JSON.stringify(data.voters)));
+                return encoded;
+            } catch (e) {
+                return '';
+            }
+        }
+
+        function decodeVotesFromHash(hash) {
+            try {
+                const decoded = JSON.parse(decodeURIComponent(atob(hash)));
+                return decoded;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function mergeFromHash(data) {
+            const hash = window.location.hash.slice(1);
+            if (!hash || hash === 'plans' || hash === 'results') return;
+
+            try {
+                const hashPrefix = 'votes=';
+                if (!hash.startsWith(hashPrefix)) return;
+                const votesHash = hash.slice(hashPrefix.length);
+                const decoded = decodeVotesFromHash(votesHash);
+                if (decoded && typeof decoded === 'object') {
+                    Object.keys(decoded).forEach(name => {
+                        if (!data.voters[name] && [1, 2, 3].includes(decoded[name])) {
+                            data.voters[name] = decoded[name];
+                        }
+                    });
+                    saveVoteData(data);
+                    // 清除 hash 避免重复合并
+                    history.replaceState(null, '', window.location.pathname);
+                }
+            } catch (e) {
+                // 忽略解析错误
+            }
+        }
+
+        function generateShareLink() {
+            const data = getVoteData();
+            const hash = encodeVotesToHash(data);
+            return window.location.origin + window.location.pathname + '#votes=' + hash;
+        }
+
+        // ===== 姓名弹窗 =====
+        function showNameModal() {
+            const modal = document.getElementById('nameModal');
+            modal.classList.add('show');
+            setTimeout(() => {
+                document.getElementById('nameInput').focus();
+            }, 300);
+        }
+
+        function hideNameModal() {
+            document.getElementById('nameModal').classList.remove('show');
+        }
+
+        function submitName() {
+            const input = document.getElementById('nameInput');
+            const name = input.value.trim();
+            const errorEl = document.getElementById('nameError');
+
+            if (!name) {
+                errorEl.textContent = '请输入你的姓名';
+                return;
+            }
+
+            if (name.length < 1 || name.length > 10) {
+                errorEl.textContent = '姓名长度1-10个字符';
+                return;
+            }
+
+            // 检查是否已经投过票
+            const data = getVoteData();
+            if (data.voters[name]) {
+                errorEl.textContent = `「${name}」已经投过票了，换个名字？`;
+                return;
+            }
+
+            setCurrentUser(name);
+            hideNameModal();
+            updateUserBadge();
+            showToast(`欢迎 ${name}！现在可以投票了`);
+        }
+
+        // 输入框事件
+        document.getElementById('nameInput').addEventListener('input', function() {
+            const btn = document.getElementById('nameSubmit');
+            const errorEl = document.getElementById('nameError');
+            btn.disabled = !this.value.trim();
+            errorEl.textContent = '';
+        });
+
+        document.getElementById('nameInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+                submitName();
+            }
+        });
+
+        // ===== 投票逻辑 =====
+        function vote(planId) {
+            const userName = getCurrentUser();
+
+            if (!userName) {
+                showNameModal();
+                return;
+            }
+
+            const data = getVoteData();
+
+            if (data.voters[userName]) {
+                showToast('你已经投过票啦！');
+                return;
+            }
+
+            data.voters[userName] = planId;
+            saveVoteData(data);
+
+            // 更新按钮状态
+            document.querySelectorAll('.vote-btn').forEach(btn => {
+                btn.classList.add('voted');
+                btn.innerHTML = '已投票';
+                btn.onclick = null;
+            });
+
+            updateAllDisplay();
+            showToast(`投票成功！你选择了「${PLAN_NAMES[planId]}」`);
+
+            // 滚动到结果区
+            setTimeout(() => {
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            }, 800);
+        }
+
+        function resetMyVote() {
+            const userName = getCurrentUser();
+            if (!userName) {
+                showToast('你还没有投过票');
+                return;
+            }
+
+            const data = getVoteData();
+            if (!data.voters[userName]) {
+                showToast('你还没有投过票');
+                return;
+            }
+
+            delete data.voters[userName];
+            saveVoteData(data);
+
+            document.querySelectorAll('.vote-btn').forEach((btn, i) => {
+                btn.classList.remove('voted');
+                btn.innerHTML = '投这个';
+                btn.onclick = () => vote(i + 1);
+            });
+
+            updateAllDisplay();
+            showToast('已重置你的投票，可以重新选择');
+        }
+
+        // ===== 显示更新 =====
+        function updateAllDisplay() {
+            const data = getVoteData();
+            const voters = data.voters;
+            const voteCounts = { 1: 0, 2: 0, 3: 0 };
+            const voterLists = { 1: [], 2: [], 3: [] };
+
+            Object.keys(voters).forEach(name => {
+                const planId = voters[name];
+                if (voteCounts.hasOwnProperty(planId)) {
+                    voteCounts[planId]++;
+                    voterLists[planId].push(name);
+                }
+            });
+
+            const total = voteCounts[1] + voteCounts[2] + voteCounts[3];
+
+            // 更新顶部统计
+            document.getElementById('total-votes').textContent = total;
+
+            // 更新进度条
+            document.getElementById('progressCount').textContent = total;
+            document.getElementById('progressBar').style.width = (total / TOTAL_VOTERS * 100) + '%';
+            if (total >= TOTAL_VOTERS) {
+                document.getElementById('progressStatus').textContent = '🎉 投票已结束！';
+            } else {
+                document.getElementById('progressStatus').textContent = `还差 ${TOTAL_VOTERS - total} 人...`;
+            }
+
+            // 更新每个方案的投票条
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`count-${i}`).textContent = voteCounts[i];
+                const percentage = total > 0 ? (voteCounts[i] / total * 100) : 0;
+                document.getElementById(`bar-${i}`).style.width = percentage + '%';
+                document.getElementById(`percent-${i}`).textContent = percentage.toFixed(0) + '%';
+            }
+
+            // 更新投票结果面板
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`col-count-${i}`).textContent = voteCounts[i] + '票';
+                const listEl = document.getElementById(`voter-list-${i}`);
+
+                if (voterLists[i].length === 0) {
+                    listEl.innerHTML = '<div class="voter-empty">暂无投票</div>';
+                } else {
+                    listEl.innerHTML = voterLists[i].map((name, idx) => {
+                        const colorClass = AVATAR_COLORS[idx % AVATAR_COLORS.length];
+                        const initial = name.charAt(0);
+                        const isMe = name === getCurrentUser();
+                        return `<div class="voter-item">
+                            <span>${name}${isMe ? ' (我)' : ''}</span>
+                        </div>`;
+                    }).join('');
+                }
+            }
+
+            // 更新结果摘要
+            const summaryEl = document.getElementById('resultsSummary');
+            if (total === 0) {
+                summaryEl.innerHTML = '等待投票中...';
+            } else {
+                const maxVotes = Math.max(...Object.values(voteCounts));
+                const winners = Object.keys(voteCounts).filter(k => voteCounts[k] === maxVotes);
+                if (winners.length === 1) {
+                    summaryEl.innerHTML = `当前领先：<span class="win">${PLAN_NAMES[winners[0]]}</span>（${maxVotes}票）`;
+                } else {
+                    const winnerNames = winners.map(k => PLAN_NAMES[k]).join(' / ');
+                    summaryEl.innerHTML = `目前打平：<span class="win">${winnerNames}</span>（各${maxVotes}票）`;
+                }
+            }
+
+            const remainEl = document.getElementById('remainingVoters');
+            if (total < TOTAL_VOTERS) {
+                remainEl.textContent = `还有 ${TOTAL_VOTERS - total} 人未投票`;
+            } else {
+                remainEl.textContent = '✅ 全员已投票';
+            }
+
+            // 检查当前用户是否已投票
+            const userName = getCurrentUser();
+            if (userName && voters[userName]) {
+                document.querySelectorAll('.vote-btn').forEach(btn => {
+                    btn.classList.add('voted');
+                    btn.innerHTML = '已投票';
+                    btn.onclick = null;
+                });
+            }
+        }
+
+        function updateUserBadge() {
+            const userName = getCurrentUser();
+            const badge = document.getElementById('userBadge');
+            if (userName) {
+                badge.style.display = 'inline-flex';
+                document.getElementById('userBadgeName').textContent = userName;
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        // ===== 分享与导出 =====
+        function copyShareLink() {
+            const link = generateShareLink();
+            navigator.clipboard.writeText(link).then(() => {
+                showToast('投票链接已复制！发给同事吧');
+            }).catch(() => {
+                // 降级方案
+                const input = document.createElement('input');
+                input.value = link;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                showToast('投票链接已复制！发给同事吧');
+            });
+        }
+
+        function exportResults() {
+            const data = getVoteData();
+            const voters = data.voters;
+            const lines = ['团建投票结果 - FAN Together 2026', '='.repeat(40), ''];
+
+            for (let i = 1; i <= 3; i++) {
+                const planVoters = Object.keys(voters).filter(name => voters[name] === i);
+                lines.push(`📋 ${PLAN_NAMES[i]}（${planVoters.length}票）`);
+                if (planVoters.length > 0) {
+                    planVoters.forEach(name => lines.push(`   - ${name}`));
+                } else {
+                    lines.push('   (暂无)');
+                }
+                lines.push('');
+            }
+
+            const total = Object.keys(voters).length;
+            lines.push(`总计：${total} / ${TOTAL_VOTERS} 人已投票`);
+
+            const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '团建投票结果.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('投票结果已导出！');
+        }
+
+        // ===== 工具函数 =====
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        function scrollToPlans() {
+            document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ===== 图片上传功能（持久化到 localStorage）=====
+        const IMAGE_STORAGE_KEY = 'fanTogether_images';
+
+        // 获取保存的图片数据
+        function getSavedImages() {
+            try {
+                const raw = localStorage.getItem(IMAGE_STORAGE_KEY);
+                return raw ? JSON.parse(raw) : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        // 保存图片数据到 localStorage
+        function saveImageData(slotId, base64Data) {
+            const images = getSavedImages();
+            images[slotId] = base64Data;
+            try {
+                localStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(images));
+            } catch (e) {
+                // localStorage 满了，尝试压缩图片后再存
+                showToast('存储空间不足，正在压缩图片...');
+                compressAndSave(slotId, base64Data);
+            }
+        }
+
+        // 删除某个图片
+        function removeImageData(slotId) {
+            const images = getSavedImages();
+            delete images[slotId];
+            localStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(images));
+        }
+
+        // 压缩图片后保存
+        function compressAndSave(slotId, base64Data) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const maxSize = 400;
+                let w = img.width, h = img.height;
+                if (w > h) { h = h * maxSize / w; w = maxSize; }
+                else { w = w * maxSize / h; h = maxSize; }
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, w, h);
+                const compressed = canvas.toDataURL('image/jpeg', 0.5);
+                const images = getSavedImages();
+                images[slotId] = compressed;
+                try {
+                    localStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(images));
+                } catch (e2) {
+                    showToast('图片太多，存储空间已满，请删除一些图片');
+                }
+            };
+            img.src = base64Data;
+        }
+
+        // 压缩图片（上传时就压缩，避免存储问题）
+        function compressImage(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxSize = 600; // 最大尺寸
+                    let w = img.width, h = img.height;
+                    if (w > maxSize || h > maxSize) {
+                        if (w > h) { h = h * maxSize / w; w = maxSize; }
+                        else { w = w * maxSize / h; h = maxSize; }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    const compressed = canvas.toDataURL('image/jpeg', 0.7);
+                    callback(compressed);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 给每个图片占位符添加唯一 ID
+        function initImageSlots() {
+            document.querySelectorAll('.plan-card').forEach((card, cardIdx) => {
+                card.querySelectorAll('.image-placeholder').forEach((placeholder, slotIdx) => {
+                    const slotId = `plan${cardIdx + 1}_slot${slotIdx + 1}`;
+                    placeholder.setAttribute('data-slot-id', slotId);
+                });
+            });
+        }
+
+        // 将图片显示到占位符
+        function displayImage(placeholder, base64Data) {
+            // 移除旧图片
+            const oldImg = placeholder.querySelector('img');
+            if (oldImg) oldImg.remove();
+            const oldOverlay = placeholder.querySelector('.image-overlay');
+            if (oldOverlay) oldOverlay.remove();
+
+            const img = document.createElement('img');
+            img.src = base64Data;
+            placeholder.appendChild(img);
+            placeholder.classList.add('has-image');
+
+            // 添加删除按钮覆盖层
+            const overlay = document.createElement('div');
+            overlay.className = 'image-overlay';
+            overlay.innerHTML = '<span class="image-delete-btn" title="删除图片">✕</span>';
+            placeholder.appendChild(overlay);
+
+            // 删除按钮点击事件
+            overlay.querySelector('.image-delete-btn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const slotId = placeholder.getAttribute('data-slot-id');
+                removeImageData(slotId);
+                placeholder.classList.remove('has-image');
+                img.remove();
+                overlay.remove();
+                showToast('图片已删除');
+            });
+        }
+
+        // 恢复保存的图片
+        function restoreSavedImages() {
+            const images = getSavedImages();
+            Object.keys(images).forEach(slotId => {
+                const placeholder = document.querySelector(`[data-slot-id="${slotId}"]`);
+                if (placeholder && images[slotId]) {
+                    displayImage(placeholder, images[slotId]);
+                }
+            });
+        }
+
+        // 处理图片上传
+        function handleImageUpload(placeholder, file) {
+            if (!file || !file.type.startsWith('image/')) return;
+            const slotId = placeholder.getAttribute('data-slot-id');
+
+            compressImage(file, function(compressed) {
+                displayImage(placeholder, compressed);
+                saveImageData(slotId, compressed);
+                showToast('图片已保存，刷新不会丢失 ✓');
+            });
+        }
+
+        // 初始化图片插槽 ID
+        initImageSlots();
+
+        // 绑定事件
+        document.querySelectorAll('.image-placeholder').forEach(placeholder => {
+            placeholder.addEventListener('click', function(e) {
+                // 如果点击的是删除按钮区域，不触发上传
+                if (e.target.closest('.image-overlay')) return;
+                if (this.classList.contains('has-image')) return;
+
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.onchange = (ev) => {
+                    const file = ev.target.files[0];
+                    if (file) handleImageUpload(this, file);
+                };
+                input.click();
+            });
+
+            placeholder.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = 'var(--accent)';
+                this.style.background = '#e8e7e3';
+            });
+
+            placeholder.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '';
+                this.style.background = '';
+            });
+
+            placeholder.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '';
+                this.style.background = '';
+                if (this.classList.contains('has-image')) return;
+                const file = e.dataTransfer.files[0];
+                if (file) handleImageUpload(this, file);
+            });
+        });
+
+        // 恢复已保存的图片
+        restoreSavedImages();
+
+        // ===== 初始化 =====
+        function init() {
+            const userName = getCurrentUser();
+            updateUserBadge();
+            updateAllDisplay();
+
+            // 如果还没有输入姓名，不自动弹窗，让用户点投票时再弹
+            // 但如果 URL 带了投票数据，先合并
+            if (window.location.hash.startsWith('#votes=')) {
+                const data = getVoteData(); // 会自动合并
+                updateAllDisplay();
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
