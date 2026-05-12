@@ -914,6 +914,26 @@
             color: var(--text-primary);
         }
 
+        .realtime-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            padding: 3px 10px;
+            border: 1px solid var(--border);
+            border-radius: 0;
+        }
+        .realtime-status .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ccc;
+            transition: background 0.3s;
+        }
+        .realtime-status.connected .status-dot { background: #5DD517; }
+        .realtime-status.polling .status-dot { background: #ff9500; }
+
         /* ===== 当前用户标识 ===== */
         .user-badge {
             display: inline-flex;
@@ -1565,8 +1585,9 @@
     <div class="vote-results-section" id="results">
         <div class="results-card">
             <div class="results-header">
-                <div class="results-title">投票详情</div>
+                <div class="results-title">投票详情 <span class="realtime-status" id="realtimeStatus"><span class="status-dot"></span><span id="realtimeText">连接中...</span></span></div>
                 <div class="results-actions">
+                    <button class="action-btn" onclick="refreshVotes(); showToast('已刷新投票数据')">🔄 刷新</button>
                     <button class="action-btn" onclick="copyShareLink()">复制投票链接</button>
                     <button class="action-btn" onclick="exportResults()">导出结果</button>
                     <button class="action-btn primary" onclick="resetMyVote()">重新投票</button>
@@ -1696,20 +1717,98 @@
             if (error) throw error;
         }
 
-        // ===== 实时订阅 — 核心！所有人都能看到实时结果 =====
-        // 订阅投票表变化
-        if (supabaseClient) {
-            supabaseClient
+        // ===== 实时订阅 + Fallback 轮询 =====
+        let realtimeConnected = false;
+        let pollTimer = null;
+        let channel = null;
+
+        function setupRealtime() {
+            if (!supabaseClient) return;
+
+            // 移除旧 channel（如果有）
+            if (channel) {
+                supabaseClient.removeChannel(channel);
+            }
+
+            channel = supabaseClient
                 .channel('votes-changes')
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'votes' }, () => {
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'votes' }, (payload) => {
+                    console.log('[Realtime] 收到变更:', payload.eventType);
                     refreshVotes();
                 })
-                .subscribe();
+                .subscribe((status, err) => {
+                    console.log('[Realtime] 订阅状态:', status, err || '');
+                    updateRealtimeIndicator(status);
+                    if (status === 'SUBSCRIBED') {
+                        realtimeConnected = true;
+                        console.log('[Realtime] ✅ 实时连接成功');
+                        // 实时生效后可以降低轮询频率
+                        startFallbackPolling(30000);
+                    } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT' || status === 'CLOSED') {
+                        realtimeConnected = false;
+                        console.warn('[Realtime] ⚠️ 连接失败，使用轮询模式');
+                        // 实时失败，加快轮询
+                        startFallbackPolling(5000);
+                        // 10秒后尝试重连
+                        setTimeout(() => {
+                            console.log('[Realtime] 尝试重连...');
+                            setupRealtime();
+                        }, 10000);
+                    }
+                });
         }
 
+        // Fallback 轮询机制 — 确保即使 Realtime 失败也能更新
+        function startFallbackPolling(interval) {
+            if (pollTimer) clearInterval(pollTimer);
+            pollTimer = setInterval(() => {
+                refreshVotes();
+            }, interval);
+            console.log(`[Polling] 轮询已启动，间隔 ${interval / 1000}s`);
+        }
+
+        // 启动实时订阅
+        setupRealtime();
+        // 无论如何先启动一个基础轮询（10秒）
+        startFallbackPolling(10000);
+
         async function refreshVotes() {
-            const voters = await fetchAllVotes();
-            updateAllDisplay(voters);
+            try {
+                const voters = await fetchAllVotes();
+                updateAllDisplay(voters);
+            } catch (err) {
+                console.error('[Refresh] 刷新投票失败:', err);
+            }
+        }
+
+        // 页面可见性变化时刷新（用户切回标签页时立即更新）
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                console.log('[Visibility] 页面可见，立即刷新');
+                refreshVotes();
+                // 重新检查 Realtime 连接
+                if (!realtimeConnected && supabaseClient) {
+                    setupRealtime();
+                }
+            }
+        });
+
+        // 更新连接状态指示器
+        function updateRealtimeIndicator(status) {
+            const el = document.getElementById('realtimeStatus');
+            const textEl = document.getElementById('realtimeText');
+            if (!el || !textEl) return;
+
+            el.classList.remove('connected', 'polling');
+            if (status === 'SUBSCRIBED') {
+                el.classList.add('connected');
+                textEl.textContent = '实时同步';
+            } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT' || status === 'CLOSED') {
+                el.classList.add('polling');
+                textEl.textContent = '轮询模式';
+            } else {
+                textEl.textContent = '连接中...';
+            }
         }
 
         // ===== 姓名弹窗 =====
