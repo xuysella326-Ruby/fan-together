@@ -14,16 +14,19 @@
         }
 
         :root {
-            --bg: #f5f4f0;
-            --bg-card: #ffffff;
-            --bg-section: #eeedea;
-            --text-primary: #1a1a1a;
-            --text-secondary: #6b6b6b;
-            --text-muted: #999999;
-            --border: #e0dfdb;
-            --accent: #e8553a;
-            --accent-hover: #d14428;
-            --dot-color: #1a1a1a;
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.06);
+            --text-primary: #f0f0f5;
+            --text-secondary: rgba(255,255,255,0.6);
+            --text-muted: rgba(255,255,255,0.35);
+            --border: rgba(255,255,255,0.08);
+            --accent: #7c5cff;
+            --accent-glow: rgba(124,92,255,0.4);
+            --accent-hover: #9b7fff;
+            --gradient-1: #7c5cff;
+            --gradient-2: #00d4ff;
+            --gradient-3: #ff6bca;
         }
 
         body {
@@ -32,6 +35,29 @@
             color: var(--text-primary);
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ===== 全局渐变背景 ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(124,92,255,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0,212,255,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255,107,202,0.05) 0%, transparent 50%);
+            z-index: -1;
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, -2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
         }
 
         /* ===== 导航栏 ===== */
@@ -41,15 +67,16 @@
             justify-content: space-between;
             padding: 20px 48px;
             border-bottom: 1px solid var(--border);
-            background: var(--bg);
+            backdrop-filter: blur(20px);
+            background: rgba(10,10,15,0.8);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .nav-logo {
-            font-size: 1.2rem;
-            font-weight: 800;
+            font-size: 1.1rem;
+            font-weight: 700;
             letter-spacing: -0.5px;
             color: var(--text-primary);
         }
@@ -64,7 +91,7 @@
             text-decoration: none;
             color: var(--text-secondary);
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 400;
             transition: color 0.2s;
         }
 
@@ -73,86 +100,106 @@
         }
 
         .nav-cta {
-            background: var(--text-primary) !important;
+            background: var(--accent) !important;
             color: #fff !important;
-            padding: 8px 18px;
-            border-radius: 0;
+            padding: 8px 20px;
+            border-radius: 20px;
             font-size: 0.82rem !important;
-            font-weight: 600 !important;
-            transition: opacity 0.2s;
+            font-weight: 500 !important;
+            transition: all 0.3s;
+            border: none;
         }
 
         .nav-cta:hover {
-            opacity: 0.85;
+            background: var(--accent-hover) !important;
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         /* ===== Hero 区域 ===== */
         .hero {
             text-align: center;
-            padding: 80px 48px 40px;
+            padding: 120px 48px 80px;
             position: relative;
         }
 
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
         .hero-title {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 800;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
             line-height: 1.05;
             color: var(--text-primary);
             margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero-title .outline {
-            color: transparent;
-            -webkit-text-stroke: 1.5px var(--text-primary);
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            font-weight: 400;
-            margin-top: 20px;
-            line-height: 1.7;
-            max-width: 480px;
+            font-weight: 300;
+            margin-top: 24px;
+            line-height: 1.8;
+            max-width: 420px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-cta {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 32px;
+            margin-top: 40px;
             background: var(--accent);
             color: #fff;
             border: none;
-            padding: 14px 28px;
-            border-radius: 0;
+            padding: 14px 32px;
+            border-radius: 28px;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.3s;
             text-decoration: none;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-cta:hover {
             background: var(--accent-hover);
-        }
-
-        .hero-cta .icon-box {
-            display: none;
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
         /* ===== 统计信息条 ===== */
         .stats-bar {
-            background: var(--bg-section);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 40px 48px;
+            padding: 48px;
         }
 
         .stats-inner {
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -165,95 +212,84 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            color: var(--text-primary);
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat-label {
             font-size: 0.8rem;
             color: var(--text-muted);
-            margin-top: 4px;
-            font-weight: 500;
+            margin-top: 6px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
         /* ===== 方案卡片区域 ===== */
         .section-title-area {
             text-align: center;
-            padding: 80px 48px 20px;
+            padding: 100px 48px 20px;
         }
 
         .section-eyebrow {
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.72rem;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 16px;
         }
 
         .section-title {
-            font-size: clamp(1.8rem, 4vw, 3rem);
-            font-weight: 800;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
             letter-spacing: -1.5px;
-            line-height: 1.1;
-        }
-
-        .section-title .highlight {
-            color: var(--text-muted);
-            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text-primary);
         }
 
         .section-desc {
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-top: 16px;
-            max-width: 500px;
+            max-width: 460px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.7;
+            font-weight: 300;
         }
 
         .plans-container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 48px 80px;
+            padding: 60px 48px 100px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 32px;
         }
 
         .plan-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 0;
-            padding: 40px;
+            border-radius: 16px;
+            padding: 48px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            transition: box-shadow 0.3s ease;
+            gap: 48px;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .plan-card:hover {
-            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
-        }
-
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: transparent;
-            transition: background 0.3s;
-        }
-
-        .plan-card:hover::before {
-            background: var(--text-primary);
+            background: var(--bg-card-hover);
+            border-color: rgba(124,92,255,0.3);
+            box-shadow: 0 0 40px rgba(124,92,255,0.08);
         }
 
         .plan-left {
@@ -263,20 +299,21 @@
         }
 
         .plan-number {
-            font-size: 0.7rem;
-            font-weight: 600;
+            font-size: 0.72rem;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 16px;
         }
 
         .plan-name {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 1.6rem;
+            font-weight: 700;
             letter-spacing: -0.5px;
             margin-bottom: 16px;
-            line-height: 1.2;
+            line-height: 1.3;
+            color: var(--text-primary);
         }
 
         .plan-keywords {
@@ -287,25 +324,26 @@
         }
 
         .plan-keyword {
-            background: var(--bg-section);
-            border: 1px solid var(--border);
+            background: rgba(124,92,255,0.1);
+            border: 1px solid rgba(124,92,255,0.2);
             padding: 5px 14px;
-            border-radius: 0;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: var(--accent-hover);
         }
 
         .plan-desc {
             font-size: 0.88rem;
             color: var(--text-secondary);
             line-height: 1.8;
+            font-weight: 300;
         }
 
         .plan-right {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         .detail-row {
@@ -322,40 +360,40 @@
         .plan-image-area {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 18px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .image-placeholder {
             aspect-ratio: 4 / 3;
-            background: var(--bg-section);
-            border: 2px dashed var(--border);
-            border-radius: 0;
+            background: rgba(255,255,255,0.02);
+            border: 1px dashed rgba(255,255,255,0.12);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
         .image-placeholder:hover {
-            border-color: var(--text-muted);
-            background: #e8e7e3;
+            border-color: rgba(124,92,255,0.4);
+            background: rgba(124,92,255,0.05);
         }
 
         .image-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 0;
+            border-radius: 10px;
         }
 
         .image-placeholder-text {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: 400;
             text-align: center;
             padding: 8px;
         }
@@ -376,10 +414,11 @@
             justify-content: flex-end;
             transition: background 0.2s;
             cursor: default;
+            border-radius: 10px;
         }
 
         .image-overlay:hover {
-            background: rgba(0,0,0,0.25);
+            background: rgba(0,0,0,0.4);
         }
 
         .image-delete-btn {
@@ -391,10 +430,11 @@
             border: none;
             font-size: 0.75rem;
             cursor: pointer;
-            margin: 6px;
+            margin: 8px;
             align-items: center;
             justify-content: center;
             transition: background 0.2s;
+            border-radius: 50%;
         }
 
         .image-overlay:hover .image-delete-btn {
@@ -411,35 +451,18 @@
 
         .detail-label {
             font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            font-weight: 500;
             letter-spacing: 1px;
             color: var(--text-muted);
-            margin-bottom: 2px;
+            margin-bottom: 3px;
+            text-transform: uppercase;
         }
 
         .detail-value {
             font-size: 0.85rem;
-            color: var(--text-primary);
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        .exhibition-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 4px;
-        }
-
-        .exhibition-tag {
-            background: var(--bg-section);
-            border: 1px solid var(--border);
-            padding: 3px 10px;
-            border-radius: 0;
-            font-size: 0.72rem;
-            font-weight: 500;
             color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.6;
         }
 
         .plan-warning {
@@ -451,7 +474,7 @@
         /* ===== 投票区域 ===== */
         .vote-area {
             grid-column: 1 / -1;
-            margin-top: 20px;
+            margin-top: 24px;
             padding-top: 24px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -470,19 +493,20 @@
             align-items: center;
             gap: 8px;
             padding: 12px 28px;
-            border: 2px solid var(--text-primary);
-            border-radius: 0;
-            background: transparent;
-            color: var(--text-primary);
+            border: none;
+            border-radius: 24px;
+            background: var(--accent);
+            color: #fff;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
         }
 
         .vote-btn:hover {
-            background: var(--text-primary);
-            color: #fff;
+            background: var(--accent-hover);
+            box-shadow: 0 0 24px var(--accent-glow);
+            transform: translateY(-1px);
         }
 
         .vote-btn:active {
@@ -490,46 +514,48 @@
         }
 
         .vote-btn.voted {
-            background: var(--bg-section);
-            border-color: var(--border);
+            background: rgba(255,255,255,0.06);
             color: var(--text-muted);
             cursor: default;
+            box-shadow: none;
         }
 
         .vote-btn.voted:hover {
-            background: var(--bg-section);
+            background: rgba(255,255,255,0.06);
             color: var(--text-muted);
+            transform: none;
+            box-shadow: none;
         }
 
         .vote-count-text {
             font-size: 0.82rem;
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .vote-count-text .num {
             font-size: 1.6rem;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--text-primary);
             margin-right: 4px;
         }
 
         .vote-right {
             flex: 1;
-            max-width: 300px;
+            max-width: 260px;
         }
 
         .vote-bar-bg {
-            height: 4px;
-            background: var(--bg-section);
-            border-radius: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
             overflow: hidden;
         }
 
         .vote-bar-fill {
             height: 100%;
-            background: var(--text-primary);
-            border-radius: 0;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+            border-radius: 2px;
             transition: width 0.6s ease;
             width: 0%;
         }
@@ -537,15 +563,15 @@
         .vote-percent {
             font-size: 0.72rem;
             color: var(--text-muted);
-            margin-top: 4px;
+            margin-top: 6px;
             text-align: right;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         /* ===== 底部 ===== */
         .footer {
             border-top: 1px solid var(--border);
-            padding: 40px 48px;
+            padding: 48px;
             text-align: center;
         }
 
@@ -556,17 +582,17 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             padding: 14px 24px;
-            border-radius: 0;
+            border-radius: 24px;
             font-size: 0.82rem;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .footer-note .dot {
             width: 6px;
             height: 6px;
             background: var(--accent);
-            border-radius: 0;
+            border-radius: 50%;
             flex-shrink: 0;
         }
 
@@ -576,25 +602,6 @@
             color: var(--text-muted);
         }
 
-        /* ===== 点阵装饰 ===== */
-        .dot-grid {
-            position: absolute;
-            opacity: 0.4;
-        }
-
-        .dot-grid-pattern {
-            display: grid;
-            grid-template-columns: repeat(10, 6px);
-            gap: 8px;
-        }
-
-        .dot-grid-pattern span {
-            width: 2px;
-            height: 2px;
-            background: var(--text-muted);
-            border-radius: 0;
-        }
-
         /* ===== 姓名输入弹窗 ===== */
         .modal-overlay {
             position: fixed;
@@ -602,8 +609,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
             z-index: 2000;
             display: flex;
             align-items: center;
@@ -619,15 +626,16 @@
         }
 
         .modal-box {
-            background: var(--bg-card);
-            border-radius: 0;
-            padding: 40px;
+            background: #1a1a24;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
             max-width: 420px;
             width: 90%;
             text-align: center;
             transform: scale(0.9) translateY(20px);
             transition: transform 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
         }
 
         .modal-overlay.show .modal-box {
@@ -641,33 +649,37 @@
 
         .modal-title {
             font-size: 1.4rem;
-            font-weight: 800;
+            font-weight: 700;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
+            color: var(--text-primary);
         }
 
         .modal-desc {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.6;
+            margin-bottom: 28px;
+            line-height: 1.7;
         }
 
         .modal-input {
             width: 100%;
             padding: 14px 18px;
-            border: 2px solid var(--border);
-            border-radius: 0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 400;
             outline: none;
             transition: border-color 0.2s;
             font-family: inherit;
             text-align: center;
+            background: rgba(255,255,255,0.04);
+            color: var(--text-primary);
         }
 
         .modal-input:focus {
-            border-color: var(--text-primary);
+            border-color: var(--accent);
+            box-shadow: 0 0 16px var(--accent-glow);
         }
 
         .modal-input::placeholder {
@@ -678,59 +690,62 @@
             margin-top: 16px;
             width: 100%;
             padding: 14px;
-            background: var(--text-primary);
+            background: var(--accent);
             color: #fff;
             border: none;
-            border-radius: 0;
+            border-radius: 12px;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: all 0.3s;
             font-family: inherit;
         }
 
         .modal-submit:hover {
-            opacity: 0.85;
+            background: var(--accent-hover);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .modal-submit:disabled {
-            opacity: 0.4;
+            opacity: 0.3;
             cursor: not-allowed;
+            box-shadow: none;
         }
 
         .modal-error {
-            color: var(--accent);
+            color: #ff6b6b;
             font-size: 0.78rem;
             margin-top: 8px;
             min-height: 20px;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         /* ===== 投票进度条 ===== */
         .progress-banner {
-            background: var(--text-primary);
-            color: #fff;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid var(--border);
             padding: 12px 48px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 16px;
-            font-size: 0.82rem;
-            font-weight: 500;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-secondary);
         }
 
         .progress-bar-wrapper {
             width: 200px;
-            height: 6px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
             overflow: hidden;
         }
 
         .progress-bar-inner {
             height: 100%;
-            background: var(--accent);
-            border-radius: 0;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+            border-radius: 2px;
             transition: width 0.6s ease;
             width: 0%;
         }
@@ -740,7 +755,8 @@
         }
 
         .progress-text .bold {
-            font-weight: 800;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         /* ===== 当前用户标识 ===== */
@@ -748,46 +764,37 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--bg-section);
-            border: 1px solid var(--border);
+            background: rgba(124,92,255,0.1);
+            border: 1px solid rgba(124,92,255,0.2);
             padding: 6px 14px;
-            border-radius: 0;
+            border-radius: 20px;
             font-size: 0.78rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+            font-weight: 400;
+            color: var(--accent-hover);
         }
 
         .user-badge .user-dot {
             width: 6px;
             height: 6px;
             background: #4caf50;
-            border-radius: 0;
+            border-radius: 50%;
         }
 
         /* ===== 投票结果面板 ===== */
         .vote-results-section {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 48px 80px;
+            padding: 0 48px 100px;
         }
 
         .results-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 0;
+            border-radius: 16px;
             padding: 40px;
             position: relative;
             overflow: hidden;
-        }
-
-        .results-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--accent);
+            backdrop-filter: blur(10px);
         }
 
         .results-header {
@@ -800,9 +807,10 @@
         }
 
         .results-title {
-            font-size: 1.3rem;
-            font-weight: 800;
+            font-size: 1.2rem;
+            font-weight: 700;
             letter-spacing: -0.5px;
+            color: var(--text-primary);
         }
 
         .results-actions {
@@ -817,19 +825,19 @@
             gap: 6px;
             padding: 8px 16px;
             border: 1px solid var(--border);
-            border-radius: 0;
-            background: var(--bg);
+            border-radius: 20px;
+            background: transparent;
             color: var(--text-secondary);
             font-size: 0.78rem;
-            font-weight: 500;
+            font-weight: 400;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
             font-family: inherit;
         }
 
         .action-btn:hover {
-            border-color: var(--text-primary);
-            color: var(--text-primary);
+            border-color: var(--accent);
+            color: var(--accent-hover);
         }
 
         .action-btn.primary {
@@ -840,6 +848,7 @@
 
         .action-btn.primary:hover {
             background: var(--accent-hover);
+            box-shadow: 0 0 16px var(--accent-glow);
         }
 
         .results-grid {
@@ -849,8 +858,9 @@
         }
 
         .result-column {
-            background: var(--bg-section);
-            border-radius: 0;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             padding: 20px;
         }
 
@@ -864,19 +874,19 @@
         }
 
         .result-column-title {
-            font-size: 0.85rem;
-            font-weight: 700;
+            font-size: 0.8rem;
+            font-weight: 600;
             color: var(--text-primary);
         }
 
         .result-column-count {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: rgba(124,92,255,0.1);
+            border: 1px solid rgba(124,92,255,0.2);
             padding: 2px 10px;
-            border-radius: 0;
+            border-radius: 12px;
             font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--text-secondary);
+            font-weight: 500;
+            color: var(--accent-hover);
         }
 
         .voter-list {
@@ -890,54 +900,18 @@
             align-items: center;
             gap: 8px;
             padding: 8px 12px;
-            background: var(--bg-card);
-            border-radius: 0;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
             font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--text-primary);
+            font-weight: 400;
+            color: var(--text-secondary);
         }
-
-        .voter-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: #fff;
-            flex-shrink: 0;
-        }
-
-        .voter-avatar.c1 { background: #e8553a; }
-        .voter-avatar.c2 { background: #3a7be8; }
-        .voter-avatar.c3 { background: #4caf50; }
-        .voter-avatar.c4 { background: #ff9800; }
-        .voter-avatar.c5 { background: #9c27b0; }
-        .voter-avatar.c6 { background: #00bcd4; }
 
         .voter-empty {
             color: var(--text-muted);
             font-size: 0.78rem;
             padding: 12px;
             text-align: center;
-        }
-
-        .waiting-dots {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 20px 0;
-        }
-
-        .waiting-dots span {
-            width: 6px;
-            height: 6px;
-            background: var(--text-muted);
-            border-radius: 0;
-            opacity: 0.3;
         }
 
         .results-footer {
@@ -954,12 +928,12 @@
         .results-summary {
             font-size: 0.82rem;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .results-summary .win {
-            color: var(--accent);
-            font-weight: 700;
+            color: var(--accent-hover);
+            font-weight: 600;
         }
 
         /* ===== Toast ===== */
@@ -968,14 +942,16 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%) translateY(-100px);
-            background: var(--text-primary);
-            color: #fff;
+            background: rgba(30,30,40,0.95);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
             padding: 14px 28px;
-            border-radius: 0;
-            font-size: 0.88rem;
-            font-weight: 500;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 400;
             z-index: 1000;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
         }
 
         .toast.show {
@@ -984,12 +960,12 @@
 
         /* ===== 动画 ===== */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .animate-in {
-            animation: fadeUp 0.6s ease forwards;
+            animation: fadeUp 0.8s ease forwards;
             opacity: 0;
         }
 
@@ -1008,34 +984,35 @@
             }
 
             .hero {
-                padding: 60px 24px 30px;
+                padding: 80px 24px 60px;
             }
 
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
+                letter-spacing: -1.5px;
             }
 
             .stats-bar {
-                padding: 30px 24px;
+                padding: 36px 24px;
             }
 
             .stats-inner {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 24px;
             }
 
             .section-title-area {
-                padding: 50px 24px 20px;
+                padding: 60px 24px 20px;
             }
 
             .plans-container {
-                padding: 24px;
+                padding: 32px 24px 60px;
             }
 
             .plan-card {
-                padding: 28px;
+                padding: 32px;
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 28px;
             }
 
             .plan-image-area {
@@ -1054,7 +1031,7 @@
             }
 
             .footer {
-                padding: 30px 24px;
+                padding: 36px 24px;
             }
 
             .progress-banner {
@@ -1127,13 +1104,13 @@
     <section class="hero">
         <h1 class="hero-title animate-in">
             夏日团建<br>
-            <span class="outline">FAN TOGETHER.</span>
+            <span class="gradient-text">FAN TOGETHER.</span>
         </h1>
         <p class="hero-subtitle animate-in">
             2026年第一次团建开始啦<br>难得换脑，选你最想
         </p>
         <a href="#plans" class="hero-cta animate-in" onclick="scrollToPlans()">
-            开始投票
+            ↓ 开始投票
         </a>
     </section>
 
@@ -1158,11 +1135,8 @@
     <!-- 方案区域 -->
     <div class="section-title-area" id="plans">
         <div class="section-eyebrow">Team Building 2026</div>
-        <h2 class="section-title">
-            选你最想<br>
-            <span class="highlight">一起出发</span>
-        </h2>
-        <p class="section-desc">三个精心策划的方案，每一个都有独特的魅力。投出你的选择，少数服从多数。</p>
+        <h2 class="section-title">选你最想，一起出发</h2>
+        <p class="section-desc">三个精心策划的方案，每一个都有独特的魅力。<br>投出你的选择，少数服从多数。</p>
     </div>
 
     <div class="plans-container">
@@ -1182,16 +1156,16 @@
             <div class="plan-right">
                 <div class="plan-image-area">
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                 </div>
                 <div class="detail-row">
@@ -1253,16 +1227,16 @@
             <div class="plan-right">
                 <div class="plan-image-area">
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                 </div>
                 <div class="detail-row">
@@ -1324,16 +1298,16 @@
             <div class="plan-right">
                 <div class="plan-image-area">
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                     <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传或拖入图片</div>
+                        <div class="image-placeholder-text">点击上传图片</div>
                     </div>
                 </div>
                 <div class="detail-row">
@@ -1466,12 +1440,10 @@
         const AVATAR_COLORS = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
 
         // ===== 数据管理 =====
-        // 投票数据结构: { voters: { "姓名": planId, ... } }
         function getVoteData() {
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
                 const data = raw ? JSON.parse(raw) : { voters: {} };
-                // 也从 URL hash 合并数据
                 mergeFromHash(data);
                 return data;
             } catch (e) {
@@ -1492,7 +1464,6 @@
         }
 
         // ===== URL Hash 数据共享 =====
-        // 编码投票数据到 URL hash，方便分享
         function encodeVotesToHash(data) {
             try {
                 const encoded = btoa(encodeURIComponent(JSON.stringify(data.voters)));
@@ -1527,12 +1498,9 @@
                         }
                     });
                     saveVoteData(data);
-                    // 清除 hash 避免重复合并
                     history.replaceState(null, '', window.location.pathname);
                 }
-            } catch (e) {
-                // 忽略解析错误
-            }
+            } catch (e) {}
         }
 
         function generateShareLink() {
@@ -1569,7 +1537,6 @@
                 return;
             }
 
-            // 检查是否已经投过票
             const data = getVoteData();
             if (data.voters[name]) {
                 errorEl.textContent = `「${name}」已经投过票了，换个名字？`;
@@ -1582,7 +1549,6 @@
             showToast(`欢迎 ${name}！现在可以投票了`);
         }
 
-        // 输入框事件
         document.getElementById('nameInput').addEventListener('input', function() {
             const btn = document.getElementById('nameSubmit');
             const errorEl = document.getElementById('nameError');
@@ -1615,7 +1581,6 @@
             data.voters[userName] = planId;
             saveVoteData(data);
 
-            // 更新按钮状态
             document.querySelectorAll('.vote-btn').forEach(btn => {
                 btn.classList.add('voted');
                 btn.innerHTML = '已投票';
@@ -1625,7 +1590,6 @@
             updateAllDisplay();
             showToast(`投票成功！你选择了「${PLAN_NAMES[planId]}」`);
 
-            // 滚动到结果区
             setTimeout(() => {
                 document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
             }, 800);
@@ -1674,10 +1638,7 @@
 
             const total = voteCounts[1] + voteCounts[2] + voteCounts[3];
 
-            // 更新顶部统计
             document.getElementById('total-votes').textContent = total;
-
-            // 更新进度条
             document.getElementById('progressCount').textContent = total;
             document.getElementById('progressBar').style.width = (total / TOTAL_VOTERS * 100) + '%';
             if (total >= TOTAL_VOTERS) {
@@ -1686,7 +1647,6 @@
                 document.getElementById('progressStatus').textContent = `还差 ${TOTAL_VOTERS - total} 人...`;
             }
 
-            // 更新每个方案的投票条
             for (let i = 1; i <= 3; i++) {
                 document.getElementById(`count-${i}`).textContent = voteCounts[i];
                 const percentage = total > 0 ? (voteCounts[i] / total * 100) : 0;
@@ -1694,7 +1654,6 @@
                 document.getElementById(`percent-${i}`).textContent = percentage.toFixed(0) + '%';
             }
 
-            // 更新投票结果面板
             for (let i = 1; i <= 3; i++) {
                 document.getElementById(`col-count-${i}`).textContent = voteCounts[i] + '票';
                 const listEl = document.getElementById(`voter-list-${i}`);
@@ -1703,8 +1662,6 @@
                     listEl.innerHTML = '<div class="voter-empty">暂无投票</div>';
                 } else {
                     listEl.innerHTML = voterLists[i].map((name, idx) => {
-                        const colorClass = AVATAR_COLORS[idx % AVATAR_COLORS.length];
-                        const initial = name.charAt(0);
                         const isMe = name === getCurrentUser();
                         return `<div class="voter-item">
                             <span>${name}${isMe ? ' (我)' : ''}</span>
@@ -1713,7 +1670,6 @@
                 }
             }
 
-            // 更新结果摘要
             const summaryEl = document.getElementById('resultsSummary');
             if (total === 0) {
                 summaryEl.innerHTML = '等待投票中...';
@@ -1735,7 +1691,6 @@
                 remainEl.textContent = '✅ 全员已投票';
             }
 
-            // 检查当前用户是否已投票
             const userName = getCurrentUser();
             if (userName && voters[userName]) {
                 document.querySelectorAll('.vote-btn').forEach(btn => {
@@ -1763,7 +1718,6 @@
             navigator.clipboard.writeText(link).then(() => {
                 showToast('投票链接已复制！发给同事吧');
             }).catch(() => {
-                // 降级方案
                 const input = document.createElement('input');
                 input.value = link;
                 document.body.appendChild(input);
@@ -1820,7 +1774,6 @@
         // ===== 图片上传功能（持久化到 localStorage）=====
         const IMAGE_STORAGE_KEY = 'fanTogether_images';
 
-        // 获取保存的图片数据
         function getSavedImages() {
             try {
                 const raw = localStorage.getItem(IMAGE_STORAGE_KEY);
@@ -1830,27 +1783,23 @@
             }
         }
 
-        // 保存图片数据到 localStorage
         function saveImageData(slotId, base64Data) {
             const images = getSavedImages();
             images[slotId] = base64Data;
             try {
                 localStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(images));
             } catch (e) {
-                // localStorage 满了，尝试压缩图片后再存
                 showToast('存储空间不足，正在压缩图片...');
                 compressAndSave(slotId, base64Data);
             }
         }
 
-        // 删除某个图片
         function removeImageData(slotId) {
             const images = getSavedImages();
             delete images[slotId];
             localStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(images));
         }
 
-        // 压缩图片后保存
         function compressAndSave(slotId, base64Data) {
             const img = new Image();
             img.onload = function() {
@@ -1875,14 +1824,13 @@
             img.src = base64Data;
         }
 
-        // 压缩图片（上传时就压缩，避免存储问题）
         function compressImage(file, callback) {
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = new Image();
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
-                    const maxSize = 600; // 最大尺寸
+                    const maxSize = 600;
                     let w = img.width, h = img.height;
                     if (w > maxSize || h > maxSize) {
                         if (w > h) { h = h * maxSize / w; w = maxSize; }
@@ -1900,7 +1848,6 @@
             reader.readAsDataURL(file);
         }
 
-        // 给每个图片占位符添加唯一 ID
         function initImageSlots() {
             document.querySelectorAll('.plan-card').forEach((card, cardIdx) => {
                 card.querySelectorAll('.image-placeholder').forEach((placeholder, slotIdx) => {
@@ -1910,9 +1857,7 @@
             });
         }
 
-        // 将图片显示到占位符
         function displayImage(placeholder, base64Data) {
-            // 移除旧图片
             const oldImg = placeholder.querySelector('img');
             if (oldImg) oldImg.remove();
             const oldOverlay = placeholder.querySelector('.image-overlay');
@@ -1923,13 +1868,11 @@
             placeholder.appendChild(img);
             placeholder.classList.add('has-image');
 
-            // 添加删除按钮覆盖层
             const overlay = document.createElement('div');
             overlay.className = 'image-overlay';
             overlay.innerHTML = '<span class="image-delete-btn" title="删除图片">✕</span>';
             placeholder.appendChild(overlay);
 
-            // 删除按钮点击事件
             overlay.querySelector('.image-delete-btn').addEventListener('click', function(e) {
                 e.stopPropagation();
                 const slotId = placeholder.getAttribute('data-slot-id');
@@ -1941,7 +1884,6 @@
             });
         }
 
-        // 恢复保存的图片
         function restoreSavedImages() {
             const images = getSavedImages();
             Object.keys(images).forEach(slotId => {
@@ -1952,7 +1894,6 @@
             });
         }
 
-        // 处理图片上传
         function handleImageUpload(placeholder, file) {
             if (!file || !file.type.startsWith('image/')) return;
             const slotId = placeholder.getAttribute('data-slot-id');
@@ -1960,17 +1901,14 @@
             compressImage(file, function(compressed) {
                 displayImage(placeholder, compressed);
                 saveImageData(slotId, compressed);
-                showToast('图片已保存，刷新不会丢失 ✓');
+                showToast('图片已保存 ✓');
             });
         }
 
-        // 初始化图片插槽 ID
         initImageSlots();
 
-        // 绑定事件
         document.querySelectorAll('.image-placeholder').forEach(placeholder => {
             placeholder.addEventListener('click', function(e) {
-                // 如果点击的是删除按钮区域，不触发上传
                 if (e.target.closest('.image-overlay')) return;
                 if (this.classList.contains('has-image')) return;
 
@@ -1986,8 +1924,8 @@
 
             placeholder.addEventListener('dragover', function(e) {
                 e.preventDefault();
-                this.style.borderColor = 'var(--accent)';
-                this.style.background = '#e8e7e3';
+                this.style.borderColor = 'rgba(124,92,255,0.5)';
+                this.style.background = 'rgba(124,92,255,0.08)';
             });
 
             placeholder.addEventListener('dragleave', function(e) {
@@ -2006,7 +1944,6 @@
             });
         });
 
-        // 恢复已保存的图片
         restoreSavedImages();
 
         // ===== 初始化 =====
@@ -2015,10 +1952,8 @@
             updateUserBadge();
             updateAllDisplay();
 
-            // 如果还没有输入姓名，不自动弹窗，让用户点投票时再弹
-            // 但如果 URL 带了投票数据，先合并
             if (window.location.hash.startsWith('#votes=')) {
-                const data = getVoteData(); // 会自动合并
+                const data = getVoteData();
                 updateAllDisplay();
             }
         }
