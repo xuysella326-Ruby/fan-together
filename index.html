@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>夏日团建—FAN Together</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
         * {
             margin: 0;
@@ -14,23 +13,24 @@
         }
 
         :root {
-            --bg: #0a0a0f;
-            --bg-card: rgba(255,255,255,0.03);
-            --bg-card-hover: rgba(255,255,255,0.06);
-            --text-primary: #f0f0f5;
-            --text-secondary: rgba(255,255,255,0.6);
-            --text-muted: rgba(255,255,255,0.35);
-            --border: rgba(255,255,255,0.08);
-            --accent: #7c5cff;
-            --accent-glow: rgba(124,92,255,0.4);
-            --accent-hover: #9b7fff;
-            --gradient-1: #7c5cff;
-            --gradient-2: #00d4ff;
-            --gradient-3: #ff6bca;
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f9f9fb;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-muted: #aeaeb2;
+            --border: rgba(0,0,0,0.08);
+            --accent: #0071e3;
+            --accent-glow: rgba(0,113,227,0.15);
+            --accent-hover: #0077ed;
+            --gradient-1: #0071e3;
+            --gradient-2: #34c759;
+            --gradient-3: #af52de;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
             background: var(--bg);
             color: var(--text-primary);
             min-height: 100vh;
@@ -38,37 +38,17 @@
             overflow-x: hidden;
         }
 
-        /* ===== 全局渐变背景 ===== */
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(124,92,255,0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(0,212,255,0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255,107,202,0.05) 0%, transparent 50%);
-            z-index: -1;
-            animation: bgFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes bgFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(2%, -2%) rotate(1deg); }
-            66% { transform: translate(-1%, 1%) rotate(-1deg); }
-        }
+        /* ===== 全局背景 ===== */
 
         /* ===== 导航栏 ===== */
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 48px;
+            padding: 16px 48px;
             border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(20px);
-            background: rgba(10,10,15,0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            background: rgba(255,255,255,0.72);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -100,94 +80,123 @@
         }
 
         .nav-cta {
-            background: var(--accent) !important;
+            background: url('Group 10.svg') center/cover no-repeat #080808 !important;
             color: #fff !important;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 24px;
+            border-radius: 0;
             font-size: 0.82rem !important;
             font-weight: 500 !important;
             transition: all 0.3s;
             border: none;
+            position: relative;
+            overflow: hidden;
         }
 
         .nav-cta:hover {
-            background: var(--accent-hover) !important;
-            box-shadow: 0 0 20px var(--accent-glow);
+            opacity: 0.88;
+            box-shadow: none;
         }
 
         /* ===== Hero 区域 ===== */
         .hero {
             text-align: center;
-            padding: 120px 48px 80px;
+            padding: 100px 48px 72px;
             position: relative;
+            overflow: hidden;
         }
 
         .hero::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            opacity: 0.3;
-            pointer-events: none;
+            display: none;
+        }
+
+        .hero-visual {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 32px;
+        }
+
+        .hero-visual img {
+            width: clamp(280px, 42vw, 520px);
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 800;
-            letter-spacing: -3px;
-            line-height: 1.05;
-            color: var(--text-primary);
-            margin-bottom: 8px;
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            font-weight: 300;
+            letter-spacing: 6px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 0;
             position: relative;
             z-index: 1;
         }
 
         .hero-title .gradient-text {
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-top: 8px;
         }
 
         .hero-subtitle {
-            font-size: 1.05rem;
+            font-size: 0.92rem;
             color: var(--text-secondary);
             font-weight: 300;
-            margin-top: 24px;
-            line-height: 1.8;
-            max-width: 420px;
+            margin-top: 28px;
+            line-height: 1.9;
+            max-width: 400px;
             margin-left: auto;
             margin-right: auto;
             position: relative;
             z-index: 1;
+            letter-spacing: 0.5px;
         }
 
         .hero-cta {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 40px;
-            background: var(--accent);
+            margin-top: 36px;
+            background: url('Group 10.svg') center/cover no-repeat #080808;
             color: #fff;
             border: none;
-            padding: 14px 32px;
-            border-radius: 28px;
-            font-size: 0.9rem;
+            padding: 16px 40px;
+            border-radius: 0;
+            font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             position: relative;
             z-index: 1;
+            letter-spacing: 1px;
+            overflow: hidden;
         }
 
         .hero-cta:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 0 30px var(--accent-glow);
+            opacity: 0.88;
+            box-shadow: none;
             transform: translateY(-2px);
         }
 
@@ -213,9 +222,9 @@
 
         .stat-number {
             font-size: 3rem;
-            font-weight: 800;
+            font-weight: 700;
             letter-spacing: -2px;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            background: linear-gradient(135deg, var(--accent), var(--gradient-2));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -275,7 +284,7 @@
         .plan-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: 0;
             padding: 48px;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -283,13 +292,13 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            box-shadow: none;
         }
 
         .plan-card:hover {
             background: var(--bg-card-hover);
-            border-color: rgba(124,92,255,0.3);
-            box-shadow: 0 0 40px rgba(124,92,255,0.08);
+            border-color: rgba(0,113,227,0.15);
+            box-shadow: none;
         }
 
         .plan-left {
@@ -324,13 +333,13 @@
         }
 
         .plan-keyword {
-            background: rgba(124,92,255,0.1);
-            border: 1px solid rgba(124,92,255,0.2);
+            background: rgba(0,113,227,0.06);
+            border: 1px solid rgba(0,113,227,0.12);
             padding: 5px 14px;
-            border-radius: 20px;
+            border-radius: 0;
             font-size: 0.72rem;
-            font-weight: 400;
-            color: var(--accent-hover);
+            font-weight: 500;
+            color: var(--accent);
         }
 
         .plan-desc {
@@ -356,7 +365,7 @@
             display: none;
         }
 
-        /* ===== 图片放置区 ===== */
+        /* ===== 图片展示区 ===== */
         .plan-image-area {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -366,28 +375,21 @@
 
         .image-placeholder {
             aspect-ratio: 4 / 3;
-            background: rgba(255,255,255,0.02);
-            border: 1px dashed rgba(255,255,255,0.12);
-            border-radius: 10px;
+            background: var(--bg-secondary);
+            border: 1px dashed rgba(0,0,0,0.1);
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .image-placeholder:hover {
-            border-color: rgba(124,92,255,0.4);
-            background: rgba(124,92,255,0.05);
         }
 
         .image-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 0;
         }
 
         .image-placeholder-text {
@@ -396,53 +398,126 @@
             font-weight: 400;
             text-align: center;
             padding: 8px;
+            pointer-events: none;
         }
 
-        .image-placeholder.has-image .image-placeholder-text {
-            display: none;
+        /* 拖拽上传相关样式 */
+        .image-placeholder.upload-enabled {
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0);
+        .image-placeholder.upload-enabled:hover {
+            border-color: var(--accent);
+            background: rgba(0,113,227,0.04);
+        }
+
+        .image-placeholder.drag-over {
+            border-color: var(--accent) !important;
+            background: rgba(0,113,227,0.08) !important;
+            box-shadow: none;
+        }
+
+        .image-placeholder .upload-hint {
             display: flex;
-            align-items: flex-start;
-            justify-content: flex-end;
-            transition: background 0.2s;
-            cursor: default;
-            border-radius: 10px;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            pointer-events: none;
         }
 
-        .image-overlay:hover {
-            background: rgba(0,0,0,0.4);
+        .image-placeholder .upload-hint .upload-icon {
+            font-size: 1.5rem;
+            opacity: 0.4;
         }
 
-        .image-delete-btn {
-            display: none;
-            width: 26px;
-            height: 26px;
-            background: rgba(0,0,0,0.6);
+        .image-placeholder .upload-hint .upload-text {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .image-placeholder .remove-btn {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
             color: #fff;
             border: none;
-            font-size: 0.75rem;
+            font-size: 14px;
             cursor: pointer;
-            margin: 8px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
-            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 10;
+            line-height: 1;
         }
 
-        .image-overlay:hover .image-delete-btn {
+        .image-placeholder:hover .remove-btn {
+            opacity: 1;
+        }
+
+        /* 锁定工具栏 */
+        .lock-toolbar {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 500;
             display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
-        .image-delete-btn:hover {
-            background: var(--accent);
+        .lock-toolbar .lock-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 0;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            box-shadow: none;
+        }
+
+        .lock-btn.lock-images {
+            background: #ff9500;
+            color: #fff;
+        }
+
+        .lock-btn.lock-images:hover {
+            background: #e68600;
+            box-shadow: none;
+            transform: translateY(-2px);
+        }
+
+        .lock-btn.unlock-images {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .lock-btn.unlock-images:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .lock-status {
+            padding: 8px 16px;
+            border-radius: 0;
+            font-size: 0.78rem;
+            font-weight: 500;
+            background: rgba(52,199,89,0.1);
+            color: #34c759;
+            border: 1px solid rgba(52,199,89,0.2);
         }
 
         .detail-content {
@@ -492,20 +567,21 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 28px;
+            padding: 14px 32px;
             border: none;
-            border-radius: 24px;
-            background: var(--accent);
+            border-radius: 0;
+            background: url('Group 10.svg') center/cover no-repeat #080808;
             color: #fff;
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
+            overflow: hidden;
         }
 
         .vote-btn:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 0 24px var(--accent-glow);
+            opacity: 0.88;
+            box-shadow: none;
             transform: translateY(-1px);
         }
 
@@ -514,14 +590,14 @@
         }
 
         .vote-btn.voted {
-            background: rgba(255,255,255,0.06);
+            background: var(--bg-secondary);
             color: var(--text-muted);
             cursor: default;
             box-shadow: none;
         }
 
         .vote-btn.voted:hover {
-            background: rgba(255,255,255,0.06);
+            background: var(--bg-secondary);
             color: var(--text-muted);
             transform: none;
             box-shadow: none;
@@ -546,16 +622,16 @@
         }
 
         .vote-bar-bg {
-            height: 3px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 2px;
+            height: 4px;
+            background: rgba(0,0,0,0.06);
+            border-radius: 0;
             overflow: hidden;
         }
 
         .vote-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
-            border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--gradient-2));
+            border-radius: 0;
             transition: width 0.6s ease;
             width: 0%;
         }
@@ -579,10 +655,10 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: var(--bg-card);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             padding: 14px 24px;
-            border-radius: 24px;
+            border-radius: 0;
             font-size: 0.82rem;
             color: var(--text-secondary);
             font-weight: 400;
@@ -609,8 +685,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(12px);
             z-index: 2000;
             display: flex;
             align-items: center;
@@ -626,16 +702,16 @@
         }
 
         .modal-box {
-            background: #1a1a24;
+            background: #ffffff;
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 0;
             padding: 48px;
             max-width: 420px;
             width: 90%;
             text-align: center;
             transform: scale(0.9) translateY(20px);
             transition: transform 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            box-shadow: none;
         }
 
         .modal-overlay.show .modal-box {
@@ -665,21 +741,21 @@
         .modal-input {
             width: 100%;
             padding: 14px 18px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.12);
+            border-radius: 0;
             font-size: 0.95rem;
             font-weight: 400;
             outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
             font-family: inherit;
             text-align: center;
-            background: rgba(255,255,255,0.04);
+            background: var(--bg-secondary);
             color: var(--text-primary);
         }
 
         .modal-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 16px var(--accent-glow);
+            box-shadow: none;
         }
 
         .modal-input::placeholder {
@@ -689,21 +765,22 @@
         .modal-submit {
             margin-top: 16px;
             width: 100%;
-            padding: 14px;
-            background: var(--accent);
+            padding: 16px;
+            background: url('Group 10.svg') center/cover no-repeat #080808;
             color: #fff;
             border: none;
-            border-radius: 12px;
+            border-radius: 0;
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
             font-family: inherit;
+            overflow: hidden;
         }
 
         .modal-submit:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 0 20px var(--accent-glow);
+            opacity: 0.88;
+            box-shadow: none;
         }
 
         .modal-submit:disabled {
@@ -722,7 +799,7 @@
 
         /* ===== 投票进度条 ===== */
         .progress-banner {
-            background: rgba(255,255,255,0.02);
+            background: var(--bg-secondary);
             border-bottom: 1px solid var(--border);
             padding: 12px 48px;
             display: flex;
@@ -736,16 +813,16 @@
 
         .progress-bar-wrapper {
             width: 200px;
-            height: 3px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 2px;
+            height: 4px;
+            background: rgba(0,0,0,0.06);
+            border-radius: 0;
             overflow: hidden;
         }
 
         .progress-bar-inner {
             height: 100%;
-            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
-            border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--gradient-2));
+            border-radius: 0;
             transition: width 0.6s ease;
             width: 0%;
         }
@@ -764,13 +841,13 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(124,92,255,0.1);
-            border: 1px solid rgba(124,92,255,0.2);
+            background: rgba(0,113,227,0.06);
+            border: 1px solid rgba(0,113,227,0.12);
             padding: 6px 14px;
-            border-radius: 20px;
+            border-radius: 0;
             font-size: 0.78rem;
-            font-weight: 400;
-            color: var(--accent-hover);
+            font-weight: 500;
+            color: var(--accent);
         }
 
         .user-badge .user-dot {
@@ -790,11 +867,11 @@
         .results-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: 0;
             padding: 40px;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            box-shadow: none;
         }
 
         .results-header {
@@ -825,7 +902,7 @@
             gap: 6px;
             padding: 8px 16px;
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 0;
             background: transparent;
             color: var(--text-secondary);
             font-size: 0.78rem;
@@ -841,14 +918,15 @@
         }
 
         .action-btn.primary {
-            background: var(--accent);
-            border-color: var(--accent);
+            background: url('Group 10.svg') center/cover no-repeat #080808;
+            border-color: #080808;
             color: #fff;
+            overflow: hidden;
         }
 
         .action-btn.primary:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 0 16px var(--accent-glow);
+            opacity: 0.88;
+            box-shadow: none;
         }
 
         .results-grid {
@@ -858,9 +936,9 @@
         }
 
         .result-column {
-            background: rgba(255,255,255,0.02);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 0;
             padding: 20px;
         }
 
@@ -880,13 +958,13 @@
         }
 
         .result-column-count {
-            background: rgba(124,92,255,0.1);
-            border: 1px solid rgba(124,92,255,0.2);
+            background: rgba(0,113,227,0.06);
+            border: 1px solid rgba(0,113,227,0.12);
             padding: 2px 10px;
-            border-radius: 12px;
+            border-radius: 0;
             font-size: 0.72rem;
-            font-weight: 500;
-            color: var(--accent-hover);
+            font-weight: 600;
+            color: var(--accent);
         }
 
         .voter-list {
@@ -900,8 +978,8 @@
             align-items: center;
             gap: 8px;
             padding: 8px 12px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 0;
             font-size: 0.82rem;
             font-weight: 400;
             color: var(--text-secondary);
@@ -932,7 +1010,7 @@
         }
 
         .results-summary .win {
-            color: var(--accent-hover);
+            color: var(--accent);
             font-weight: 600;
         }
 
@@ -942,16 +1020,17 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%) translateY(-100px);
-            background: rgba(30,30,40,0.95);
+            background: rgba(255,255,255,0.95);
             border: 1px solid var(--border);
             color: var(--text-primary);
             padding: 14px 28px;
-            border-radius: 12px;
+            border-radius: 0;
             font-size: 0.85rem;
-            font-weight: 400;
+            font-weight: 500;
             z-index: 1000;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            backdrop-filter: blur(10px);
+            backdrop-filter: saturate(180%) blur(20px);
+            box-shadow: none;
         }
 
         .toast.show {
@@ -984,12 +1063,30 @@
             }
 
             .hero {
-                padding: 80px 24px 60px;
+                padding: 64px 24px 48px;
+            }
+
+            .hero-visual img {
+                width: clamp(220px, 65vw, 320px);
+            }
+
+            .hero-visual {
+                margin-bottom: 24px;
+            }
+
+            .hero-eyebrow {
+                font-size: 0.65rem;
+                letter-spacing: 3px;
+                margin-bottom: 20px;
             }
 
             .hero-title {
-                font-size: 2.5rem;
-                letter-spacing: -1.5px;
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+            }
+
+            .hero-title .gradient-text {
+                font-size: 0.72rem;
             }
 
             .stats-bar {
@@ -1102,12 +1199,16 @@
 
     <!-- Hero -->
     <section class="hero">
+        <div class="hero-eyebrow animate-in">Team Building 2026</div>
+        <div class="hero-visual animate-in">
+            <img src="assets/CodeBuddyAssets/18_122/1.png" alt="团建">
+        </div>
         <h1 class="hero-title animate-in">
-            夏日团建<br>
+            夏日出发，选你最想
             <span class="gradient-text">FAN TOGETHER.</span>
         </h1>
         <p class="hero-subtitle animate-in">
-            2026年第一次团建开始啦<br>难得换脑，选你最想
+            2026年第一次团建开始啦<br>三个精选方案，投出你的选择
         </p>
         <a href="#plans" class="hero-cta animate-in" onclick="scrollToPlans()">
             ↓ 开始投票
@@ -1154,18 +1255,30 @@
                 <p class="plan-desc">日落散步、团队小游戏、自由拍照、咖啡馆打卡、海边聚餐</p>
             </div>
             <div class="plan-right">
-                <div class="plan-image-area">
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                <div class="plan-image-area" data-plan="1">
+                    <div class="image-placeholder upload-enabled" data-plan="1" data-index="0">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="1" data-index="1">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="1" data-index="2">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="1" data-index="3">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
                 </div>
                 <div class="detail-row">
@@ -1225,18 +1338,30 @@
                 <p class="plan-desc">西山步道、湖边散步、拍照出片、自助烧烤、游泳、桌游互动</p>
             </div>
             <div class="plan-right">
-                <div class="plan-image-area">
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                <div class="plan-image-area" data-plan="2">
+                    <div class="image-placeholder upload-enabled" data-plan="2" data-index="0">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="2" data-index="1">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="2" data-index="2">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="2" data-index="3">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
                 </div>
                 <div class="detail-row">
@@ -1296,18 +1421,30 @@
                 <p class="plan-desc">草原骑马、民族风旅拍、湖边露营、城市漫游、风景公路打卡</p>
             </div>
             <div class="plan-right">
-                <div class="plan-image-area">
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                <div class="plan-image-area" data-plan="3">
+                    <div class="image-placeholder upload-enabled" data-plan="3" data-index="0">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="3" data-index="1">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="3" data-index="2">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
-                    <div class="image-placeholder">
-                        <div class="image-placeholder-text">点击上传图片</div>
+                    <div class="image-placeholder upload-enabled" data-plan="3" data-index="3">
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
                     </div>
                 </div>
                 <div class="detail-row">
@@ -1428,33 +1565,41 @@
         </div>
     </footer>
 
+    <!-- 锁定图片工具栏 -->
+    <div class="lock-toolbar" id="lockToolbar">
+        <button class="lock-btn lock-images" onclick="lockAllImages()">🔒 锁定所有图片</button>
+        <button class="lock-btn unlock-images" onclick="unlockAllImages()" style="display:none" id="unlockBtn">🔓 解锁编辑</button>
+    </div>
+
     <!-- Toast -->
     <div class="toast" id="toast"></div>
 
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
     <script>
+        // ===== Supabase 配置 =====
+        const SUPABASE_URL = 'https://ejjwijobfumauiquruhp.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqandpam9iZnVtYXVpcXVydWhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1NzMzNzMsImV4cCI6MjA5NDE0OTM3M30.seycF2aEF06tgvU0KzuOJbz9KJlAxAVO4hrI4JpISc8';
+
+        // 初始化 Supabase（容错处理）
+        let supabaseClient = null;
+        try {
+            if (window.supabase && window.supabase.createClient) {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            } else {
+                console.warn('Supabase SDK 未加载，投票功能不可用（离线模式）');
+            }
+        } catch(e) {
+            console.warn('Supabase 初始化失败:', e);
+        }
+
         // ===== 配置 =====
         const TOTAL_VOTERS = 20;
-        const STORAGE_KEY = 'fanTogether_votes';
         const USER_KEY = 'fanTogether_user';
         const PLAN_NAMES = { 1: '阿那亚 · 海边文艺慢旅行', 2: '撒索民宿 · 山野松弛局', 3: '新疆伊犁 · 风景公路计划' };
-        const AVATAR_COLORS = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
 
-        // ===== 数据管理 =====
-        function getVoteData() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                const data = raw ? JSON.parse(raw) : { voters: {} };
-                mergeFromHash(data);
-                return data;
-            } catch (e) {
-                return { voters: {} };
-            }
-        }
-
-        function saveVoteData(data) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        }
-
+        // ===== 本地用户管理 =====
         function getCurrentUser() {
             return localStorage.getItem(USER_KEY) || '';
         }
@@ -1463,50 +1608,58 @@
             localStorage.setItem(USER_KEY, name);
         }
 
-        // ===== URL Hash 数据共享 =====
-        function encodeVotesToHash(data) {
-            try {
-                const encoded = btoa(encodeURIComponent(JSON.stringify(data.voters)));
-                return encoded;
-            } catch (e) {
-                return '';
+        // ===== Supabase 数据管理 =====
+        // 获取所有投票数据
+        async function fetchAllVotes() {
+            if (!supabaseClient) return {};
+            const { data, error } = await supabaseClient
+                .from('votes')
+                .select('*');
+            if (error) {
+                console.error('获取投票失败:', error);
+                return {};
             }
+            // 转换为 {name: plan_id} 格式
+            const voters = {};
+            (data || []).forEach(row => {
+                voters[row.voter_name] = row.plan_id;
+            });
+            return voters;
         }
 
-        function decodeVotesFromHash(hash) {
-            try {
-                const decoded = JSON.parse(decodeURIComponent(atob(hash)));
-                return decoded;
-            } catch (e) {
-                return null;
-            }
+        // 写入投票
+        async function saveVoteToCloud(userName, planId) {
+            if (!supabaseClient) { showToast('离线模式，无法投票'); return; }
+            const { error } = await supabaseClient
+                .from('votes')
+                .insert({ voter_name: userName, plan_id: planId });
+            if (error) throw error;
         }
 
-        function mergeFromHash(data) {
-            const hash = window.location.hash.slice(1);
-            if (!hash || hash === 'plans' || hash === 'results') return;
-
-            try {
-                const hashPrefix = 'votes=';
-                if (!hash.startsWith(hashPrefix)) return;
-                const votesHash = hash.slice(hashPrefix.length);
-                const decoded = decodeVotesFromHash(votesHash);
-                if (decoded && typeof decoded === 'object') {
-                    Object.keys(decoded).forEach(name => {
-                        if (!data.voters[name] && [1, 2, 3].includes(decoded[name])) {
-                            data.voters[name] = decoded[name];
-                        }
-                    });
-                    saveVoteData(data);
-                    history.replaceState(null, '', window.location.pathname);
-                }
-            } catch (e) {}
+        // 删除投票
+        async function removeVoteFromCloud(userName) {
+            if (!supabaseClient) return;
+            const { error } = await supabaseClient
+                .from('votes')
+                .delete()
+                .eq('voter_name', userName);
+            if (error) throw error;
         }
 
-        function generateShareLink() {
-            const data = getVoteData();
-            const hash = encodeVotesToHash(data);
-            return window.location.origin + window.location.pathname + '#votes=' + hash;
+        // ===== 实时订阅 — 核心！所有人都能看到实时结果 =====
+        // 订阅投票表变化
+        if (supabaseClient) {
+            supabaseClient
+                .channel('votes-changes')
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'votes' }, () => {
+                    refreshVotes();
+                })
+                .subscribe();
+        }
+
+        async function refreshVotes() {
+            const voters = await fetchAllVotes();
+            updateAllDisplay(voters);
         }
 
         // ===== 姓名弹窗 =====
@@ -1522,7 +1675,7 @@
             document.getElementById('nameModal').classList.remove('show');
         }
 
-        function submitName() {
+        async function submitName() {
             const input = document.getElementById('nameInput');
             const name = input.value.trim();
             const errorEl = document.getElementById('nameError');
@@ -1537,10 +1690,18 @@
                 return;
             }
 
-            const data = getVoteData();
-            if (data.voters[name]) {
-                errorEl.textContent = `「${name}」已经投过票了，换个名字？`;
-                return;
+            // 检查是否已投票
+            if (supabaseClient) {
+                const { data } = await supabaseClient
+                    .from('votes')
+                    .select('voter_name')
+                    .eq('voter_name', name)
+                    .maybeSingle();
+
+                if (data) {
+                    errorEl.textContent = `「${name}」已经投过票了，换个名字？`;
+                    return;
+                }
             }
 
             setCurrentUser(name);
@@ -1563,7 +1724,7 @@
         });
 
         // ===== 投票逻辑 =====
-        function vote(planId) {
+        async function vote(planId) {
             const userName = getCurrentUser();
 
             if (!userName) {
@@ -1571,60 +1732,68 @@
                 return;
             }
 
-            const data = getVoteData();
+            // 先检查是否已投票
+            if (supabaseClient) {
+                const { data } = await supabaseClient
+                    .from('votes')
+                    .select('voter_name')
+                    .eq('voter_name', userName)
+                    .maybeSingle();
 
-            if (data.voters[userName]) {
-                showToast('你已经投过票啦！');
-                return;
+                if (data) {
+                    showToast('你已经投过票啦！');
+                    return;
+                }
             }
 
-            data.voters[userName] = planId;
-            saveVoteData(data);
-
-            document.querySelectorAll('.vote-btn').forEach(btn => {
-                btn.classList.add('voted');
-                btn.innerHTML = '已投票';
-                btn.onclick = null;
-            });
-
-            updateAllDisplay();
-            showToast(`投票成功！你选择了「${PLAN_NAMES[planId]}」`);
-
-            setTimeout(() => {
-                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
-            }, 800);
+            try {
+                await saveVoteToCloud(userName, planId);
+                showToast(`投票成功！你选择了「${PLAN_NAMES[planId]}」`);
+                // 立即刷新显示
+                refreshVotes();
+                setTimeout(() => {
+                    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+                }, 800);
+            } catch (err) {
+                showToast('投票失败，请重试');
+                console.error(err);
+            }
         }
 
-        function resetMyVote() {
+        async function resetMyVote() {
             const userName = getCurrentUser();
             if (!userName) {
                 showToast('你还没有投过票');
                 return;
             }
 
-            const data = getVoteData();
-            if (!data.voters[userName]) {
+            if (!supabaseClient) { showToast('离线模式，无法操作'); return; }
+
+            const { data } = await supabaseClient
+                .from('votes')
+                .select('voter_name')
+                .eq('voter_name', userName)
+                .maybeSingle();
+
+            if (!data) {
                 showToast('你还没有投过票');
                 return;
             }
 
-            delete data.voters[userName];
-            saveVoteData(data);
-
-            document.querySelectorAll('.vote-btn').forEach((btn, i) => {
-                btn.classList.remove('voted');
-                btn.innerHTML = '投这个';
-                btn.onclick = () => vote(i + 1);
-            });
-
-            updateAllDisplay();
-            showToast('已重置你的投票，可以重新选择');
+            try {
+                await removeVoteFromCloud(userName);
+                showToast('已重置你的投票，可以重新选择');
+                refreshVotes();
+            } catch (err) {
+                showToast('重置失败，请重试');
+                console.error(err);
+            }
         }
 
-        // ===== 显示更新 =====
-        function updateAllDisplay() {
-            const data = getVoteData();
-            const voters = data.voters;
+        // ===== 显示更新（由 Supabase 实时订阅触发）=====
+        function updateAllDisplay(voters) {
+            if (!voters) voters = {};
+
             const voteCounts = { 1: 0, 2: 0, 3: 0 };
             const voterLists = { 1: [], 2: [], 3: [] };
 
@@ -1661,7 +1830,7 @@
                 if (voterLists[i].length === 0) {
                     listEl.innerHTML = '<div class="voter-empty">暂无投票</div>';
                 } else {
-                    listEl.innerHTML = voterLists[i].map((name, idx) => {
+                    listEl.innerHTML = voterLists[i].map((name) => {
                         const isMe = name === getCurrentUser();
                         return `<div class="voter-item">
                             <span>${name}${isMe ? ' (我)' : ''}</span>
@@ -1691,12 +1860,19 @@
                 remainEl.textContent = '✅ 全员已投票';
             }
 
+            // 更新投票按钮状态
             const userName = getCurrentUser();
             if (userName && voters[userName]) {
                 document.querySelectorAll('.vote-btn').forEach(btn => {
                     btn.classList.add('voted');
                     btn.innerHTML = '已投票';
                     btn.onclick = null;
+                });
+            } else {
+                document.querySelectorAll('.vote-btn').forEach((btn, i) => {
+                    btn.classList.remove('voted');
+                    btn.innerHTML = '投这个';
+                    btn.onclick = () => vote(i + 1);
                 });
             }
         }
@@ -1714,9 +1890,9 @@
 
         // ===== 分享与导出 =====
         function copyShareLink() {
-            const link = generateShareLink();
+            const link = window.location.origin + window.location.pathname;
             navigator.clipboard.writeText(link).then(() => {
-                showToast('投票链接已复制！发给同事吧');
+                showToast('投票链接已复制！发给同事即可实时看到投票');
             }).catch(() => {
                 const input = document.createElement('input');
                 input.value = link;
@@ -1724,13 +1900,12 @@
                 input.select();
                 document.execCommand('copy');
                 document.body.removeChild(input);
-                showToast('投票链接已复制！发给同事吧');
+                showToast('投票链接已复制！发给同事即可实时看到投票');
             });
         }
 
-        function exportResults() {
-            const data = getVoteData();
-            const voters = data.voters;
+        async function exportResults() {
+            const voters = await fetchAllVotes();
             const lines = ['团建投票结果 - FAN Together 2026', '='.repeat(40), ''];
 
             for (let i = 1; i <= 3; i++) {
@@ -1771,194 +1946,202 @@
             document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // ===== 图片上传功能（持久化到 localStorage）=====
-        const IMAGE_STORAGE_KEY = 'fanTogether_images';
-
-        function getSavedImages() {
-            try {
-                const raw = localStorage.getItem(IMAGE_STORAGE_KEY);
-                return raw ? JSON.parse(raw) : {};
-            } catch (e) {
-                return {};
-            }
+        // ===== 初始化 =====
+        async function init() {
+            updateUserBadge();
+            // 初次加载投票数据
+            await refreshVotes();
         }
 
-        function saveImageData(slotId, base64Data) {
-            const images = getSavedImages();
-            images[slotId] = base64Data;
-            try {
-                localStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(images));
-            } catch (e) {
-                showToast('存储空间不足，正在压缩图片...');
-                compressAndSave(slotId, base64Data);
-            }
-        }
+        init();
 
-        function removeImageData(slotId) {
-            const images = getSavedImages();
-            delete images[slotId];
-            localStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(images));
-        }
+        // ===== 图片拖拽上传逻辑 =====
+        // 隐藏的 file input
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.style.display = 'none';
+        document.body.appendChild(fileInput);
 
-        function compressAndSave(slotId, base64Data) {
-            const img = new Image();
-            img.onload = function() {
-                const canvas = document.createElement('canvas');
-                const maxSize = 400;
-                let w = img.width, h = img.height;
-                if (w > h) { h = h * maxSize / w; w = maxSize; }
-                else { w = w * maxSize / h; h = maxSize; }
-                canvas.width = w;
-                canvas.height = h;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, w, h);
-                const compressed = canvas.toDataURL('image/jpeg', 0.5);
-                const images = getSavedImages();
-                images[slotId] = compressed;
-                try {
-                    localStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(images));
-                } catch (e2) {
-                    showToast('图片太多，存储空间已满，请删除一些图片');
+        let currentUploadTarget = null;
+
+        // 为所有上传区域绑定事件
+        function initImageUpload() {
+            document.querySelectorAll('.image-placeholder.upload-enabled').forEach(placeholder => {
+                // 点击上传
+                placeholder.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('remove-btn')) return;
+                    currentUploadTarget = this;
+                    fileInput.click();
+                });
+
+                // 拖拽事件
+                placeholder.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.classList.add('drag-over');
+                });
+
+                placeholder.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.classList.remove('drag-over');
+                });
+
+                placeholder.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.classList.remove('drag-over');
+
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0 && files[0].type.startsWith('image/')) {
+                        handleImageFile(files[0], this);
+                    }
+                });
+            });
+
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0 && currentUploadTarget) {
+                    handleImageFile(this.files[0], currentUploadTarget);
                 }
-            };
-            img.src = base64Data;
+                this.value = ''; // 重置以便再次选择同一文件
+            });
         }
 
-        function compressImage(file, callback) {
+        // 处理图片文件 → 转 Base64 嵌入
+        function handleImageFile(file, placeholder) {
+            // 限制文件大小 5MB
+            if (file.size > 5 * 1024 * 1024) {
+                showToast('图片太大了，请选择5MB以内的图片');
+                return;
+            }
+
             const reader = new FileReader();
             reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const maxSize = 600;
-                    let w = img.width, h = img.height;
-                    if (w > maxSize || h > maxSize) {
-                        if (w > h) { h = h * maxSize / w; w = maxSize; }
-                        else { w = w * maxSize / h; h = maxSize; }
-                    }
-                    canvas.width = w;
-                    canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, w, h);
-                    const compressed = canvas.toDataURL('image/jpeg', 0.7);
-                    callback(compressed);
-                };
-                img.src = e.target.result;
+                const base64Data = e.target.result;
+                setImageToPlaceholder(placeholder, base64Data);
             };
             reader.readAsDataURL(file);
         }
 
-        function initImageSlots() {
-            document.querySelectorAll('.plan-card').forEach((card, cardIdx) => {
-                card.querySelectorAll('.image-placeholder').forEach((placeholder, slotIdx) => {
-                    const slotId = `plan${cardIdx + 1}_slot${slotIdx + 1}`;
-                    placeholder.setAttribute('data-slot-id', slotId);
-                });
-            });
-        }
+        // 将 Base64 图片设置到占位区
+        function setImageToPlaceholder(placeholder, base64Data) {
+            // 清空原内容
+            placeholder.innerHTML = '';
 
-        function displayImage(placeholder, base64Data) {
-            const oldImg = placeholder.querySelector('img');
-            if (oldImg) oldImg.remove();
-            const oldOverlay = placeholder.querySelector('.image-overlay');
-            if (oldOverlay) oldOverlay.remove();
-
+            // 创建图片
             const img = document.createElement('img');
             img.src = base64Data;
             placeholder.appendChild(img);
-            placeholder.classList.add('has-image');
 
-            const overlay = document.createElement('div');
-            overlay.className = 'image-overlay';
-            overlay.innerHTML = '<span class="image-delete-btn" title="删除图片">✕</span>';
-            placeholder.appendChild(overlay);
+            // 添加删除按钮
+            if (placeholder.classList.contains('upload-enabled')) {
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-btn';
+                removeBtn.innerHTML = '×';
+                removeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    resetPlaceholder(placeholder);
+                });
+                placeholder.appendChild(removeBtn);
+            }
 
-            overlay.querySelector('.image-delete-btn').addEventListener('click', function(e) {
-                e.stopPropagation();
-                const slotId = placeholder.getAttribute('data-slot-id');
-                removeImageData(slotId);
-                placeholder.classList.remove('has-image');
-                img.remove();
-                overlay.remove();
-                showToast('图片已删除');
-            });
+            // 移除虚线边框
+            placeholder.style.border = 'none';
         }
 
-        function restoreSavedImages() {
-            const images = getSavedImages();
-            Object.keys(images).forEach(slotId => {
-                const placeholder = document.querySelector(`[data-slot-id="${slotId}"]`);
-                if (placeholder && images[slotId]) {
-                    displayImage(placeholder, images[slotId]);
+        // 重置占位区
+        function resetPlaceholder(placeholder) {
+            placeholder.innerHTML = `
+                <div class="upload-hint">
+                    <span class="upload-icon">📷</span>
+                    <span class="upload-text">拖拽或点击上传</span>
+                </div>
+            `;
+            placeholder.style.border = '';
+        }
+
+        // ===== 锁定/解锁图片 =====
+        function lockAllImages() {
+            const placeholders = document.querySelectorAll('.image-placeholder');
+            let hasImage = false;
+
+            placeholders.forEach(p => {
+                const img = p.querySelector('img');
+                if (img) hasImage = true;
+            });
+
+            if (!hasImage) {
+                showToast('请先上传至少一张图片再锁定');
+                return;
+            }
+
+            // 移除上传功能
+            placeholders.forEach(p => {
+                p.classList.remove('upload-enabled');
+                p.classList.remove('drag-over');
+                // 移除删除按钮
+                const rmBtn = p.querySelector('.remove-btn');
+                if (rmBtn) rmBtn.remove();
+                // 如果没有图片，隐藏空的占位区或显示静态文字
+                const img = p.querySelector('img');
+                if (!img) {
+                    p.innerHTML = '<div class="image-placeholder-text">暂无图片</div>';
+                }
+                // 移除点击和拖拽事件（通过替换节点）
+                const newP = p.cloneNode(true);
+                p.parentNode.replaceChild(newP, p);
+            });
+
+            // 隐藏锁定按钮，显示解锁按钮
+            document.querySelector('.lock-btn.lock-images').style.display = 'none';
+            document.getElementById('unlockBtn').style.display = 'inline-flex';
+
+            showToast('图片已锁定！现在可以把此页面发给大家了');
+        }
+
+        function unlockAllImages() {
+            // 重新启用所有占位区
+            document.querySelectorAll('.image-placeholder').forEach(p => {
+                p.classList.add('upload-enabled');
+                const img = p.querySelector('img');
+                if (img) {
+                    // 已有图片的添加删除按钮
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-btn';
+                    removeBtn.innerHTML = '×';
+                    removeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        resetPlaceholder(p);
+                    });
+                    p.appendChild(removeBtn);
+                } else {
+                    // 无图片的恢复上传提示
+                    p.innerHTML = `
+                        <div class="upload-hint">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">拖拽或点击上传</span>
+                        </div>
+                    `;
+                    p.style.border = '';
                 }
             });
+
+            // 重新绑定事件
+            initImageUpload();
+
+            document.querySelector('.lock-btn.lock-images').style.display = 'inline-flex';
+            document.getElementById('unlockBtn').style.display = 'none';
+
+            showToast('已解锁，可以重新编辑图片');
         }
 
-        function handleImageUpload(placeholder, file) {
-            if (!file || !file.type.startsWith('image/')) return;
-            const slotId = placeholder.getAttribute('data-slot-id');
+        // 页面全局拖拽防止浏览器默认打开图片
+        document.addEventListener('dragover', function(e) { e.preventDefault(); });
+        document.addEventListener('drop', function(e) { e.preventDefault(); });
 
-            compressImage(file, function(compressed) {
-                displayImage(placeholder, compressed);
-                saveImageData(slotId, compressed);
-                showToast('图片已保存 ✓');
-            });
-        }
-
-        initImageSlots();
-
-        document.querySelectorAll('.image-placeholder').forEach(placeholder => {
-            placeholder.addEventListener('click', function(e) {
-                if (e.target.closest('.image-overlay')) return;
-                if (this.classList.contains('has-image')) return;
-
-                const input = document.createElement('input');
-                input.type = 'file';
-                input.accept = 'image/*';
-                input.onchange = (ev) => {
-                    const file = ev.target.files[0];
-                    if (file) handleImageUpload(this, file);
-                };
-                input.click();
-            });
-
-            placeholder.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                this.style.borderColor = 'rgba(124,92,255,0.5)';
-                this.style.background = 'rgba(124,92,255,0.08)';
-            });
-
-            placeholder.addEventListener('dragleave', function(e) {
-                e.preventDefault();
-                this.style.borderColor = '';
-                this.style.background = '';
-            });
-
-            placeholder.addEventListener('drop', function(e) {
-                e.preventDefault();
-                this.style.borderColor = '';
-                this.style.background = '';
-                if (this.classList.contains('has-image')) return;
-                const file = e.dataTransfer.files[0];
-                if (file) handleImageUpload(this, file);
-            });
-        });
-
-        restoreSavedImages();
-
-        // ===== 初始化 =====
-        function init() {
-            const userName = getCurrentUser();
-            updateUserBadge();
-            updateAllDisplay();
-
-            if (window.location.hash.startsWith('#votes=')) {
-                const data = getVoteData();
-                updateAllDisplay();
-            }
-        }
-
-        init();
+        // 初始化图片上传
+        initImageUpload();
     </script>
 </body>
 </html>
