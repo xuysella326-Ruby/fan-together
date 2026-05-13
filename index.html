@@ -334,15 +334,15 @@
         .plans-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 48px 100px;
+            padding: 60px 84px 100px;
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 72px;
         }
 
         .plan-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: #FBFBFB;
+            border: none;
             border-radius: 0;
             padding: 48px;
             display: grid;
@@ -350,14 +350,38 @@
             gap: 48px;
             transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             box-shadow: none;
         }
 
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            bottom: -36px;
+            left: -36px;
+            width: 36px;
+            height: 36px;
+            background: #FBFBFB;
+        }
+
+        .plan-card::after {
+            content: '';
+            position: absolute;
+            top: -36px;
+            right: -36px;
+            width: 36px;
+            height: 36px;
+            background: #FBFBFB;
+        }
+
         .plan-card:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(93,213,23,0.15);
+            background: #f3f3f3;
             box-shadow: none;
+        }
+
+        .plan-card:hover::before,
+        .plan-card:hover::after {
+            background: #f3f3f3;
         }
 
         .plan-left {
@@ -937,26 +961,6 @@
             color: var(--text-primary);
         }
 
-        .realtime-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            padding: 3px 10px;
-            border: 1px solid var(--border);
-            border-radius: 0;
-        }
-        .realtime-status .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ccc;
-            transition: background 0.3s;
-        }
-        .realtime-status.connected .status-dot { background: #5DD517; }
-        .realtime-status.polling .status-dot { background: #ff9500; }
-
         /* ===== 当前用户标识 ===== */
         .user-badge {
             display: inline-flex;
@@ -982,26 +986,46 @@
         .vote-results-section {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 48px 100px;
+            padding: 0 84px 100px;
         }
 
         .results-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: #FBFBFB;
+            border: none;
             border-radius: 0;
-            padding: 40px;
+            padding: 48px;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             box-shadow: none;
+        }
+
+        .results-card::before {
+            content: '';
+            position: absolute;
+            bottom: -36px;
+            left: -36px;
+            width: 36px;
+            height: 36px;
+            background: #FBFBFB;
+        }
+
+        .results-card::after {
+            content: '';
+            position: absolute;
+            top: -36px;
+            right: -36px;
+            width: 36px;
+            height: 36px;
+            background: #FBFBFB;
         }
 
         .results-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
 
         .results-title {
@@ -1021,30 +1045,30 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 16px;
-            border: 1px solid var(--border);
+            padding: 7px 14px;
+            border: none;
             border-radius: 0;
-            background: transparent;
+            background: #fff;
             color: var(--text-secondary);
             font-size: 0.78rem;
             font-weight: 400;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             font-family: inherit;
         }
 
         .action-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent-hover);
+            color: var(--text-primary);
+            background: #f0f0f0;
         }
 
         .action-btn.primary {
             background: #080808;
-            border-color: #080808;
             color: #fff;
             overflow: visible;
             position: relative;
         }
+
         .action-btn.primary::before {
             content: '';
             position: absolute;
@@ -1054,6 +1078,7 @@
             height: 6px;
             background: #080808;
         }
+
         .action-btn.primary::after {
             content: '';
             position: absolute;
@@ -1066,7 +1091,6 @@
 
         .action-btn.primary:hover {
             opacity: 0.88;
-            box-shadow: none;
         }
 
         .results-grid {
@@ -1076,19 +1100,19 @@
         }
 
         .result-column {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
+            background: #ffffff;
+            border: none;
             border-radius: 0;
-            padding: 20px;
+            padding: 18px;
         }
 
         .result-column-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: 14px;
+            padding-bottom: 0;
+            border-bottom: none;
         }
 
         .result-column-title {
@@ -1098,9 +1122,9 @@
         }
 
         .result-column-count {
-            background: rgba(93,213,23,0.06);
-            border: 1px solid rgba(93,213,23,0.12);
-            padding: 2px 10px;
+            background: rgba(93,213,23,0.08);
+            border: none;
+            padding: 2px 8px;
             border-radius: 0;
             font-size: 0.72rem;
             font-weight: 600;
@@ -1118,11 +1142,11 @@
             align-items: center;
             gap: 8px;
             padding: 8px 12px;
-            background: rgba(0,0,0,0.02);
+            background: #FBFBFB;
             border-radius: 0;
             font-size: 0.82rem;
             font-weight: 400;
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }
 
         .voter-empty {
@@ -1133,14 +1157,14 @@
         }
 
         .results-footer {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
+            margin-top: 16px;
+            padding-top: 0;
+            border-top: none;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
 
         .results-summary {
@@ -1254,13 +1278,28 @@
             }
 
             .plans-container {
-                padding: 32px 24px 60px;
+                padding: 32px 48px 60px;
+                gap: 56px;
             }
 
             .plan-card {
                 padding: 32px;
                 grid-template-columns: 1fr;
                 gap: 28px;
+            }
+
+            .plan-card::before {
+                bottom: -24px;
+                left: -24px;
+                width: 24px;
+                height: 24px;
+            }
+
+            .plan-card::after {
+                top: -24px;
+                right: -24px;
+                width: 24px;
+                height: 24px;
             }
 
             .plan-image-area {
@@ -1293,11 +1332,25 @@
             }
 
             .vote-results-section {
-                padding: 0 24px 60px;
+                padding: 0 48px 60px;
             }
 
             .results-card {
-                padding: 24px;
+                padding: 32px;
+            }
+
+            .results-card::before {
+                bottom: -24px;
+                left: -24px;
+                width: 24px;
+                height: 24px;
+            }
+
+            .results-card::after {
+                top: -24px;
+                right: -24px;
+                width: 24px;
+                height: 24px;
             }
 
             .results-grid {
@@ -1639,11 +1692,10 @@
     <div class="vote-results-section" id="results">
         <div class="results-card">
             <div class="results-header">
-                <div class="results-title">投票详情 <span class="realtime-status" id="realtimeStatus"><span class="status-dot"></span><span id="realtimeText">连接中...</span></span></div>
+                <div class="results-title">投票详情</div>
                 <div class="results-actions">
-                    <button class="action-btn" onclick="refreshVotes(); showToast('已刷新投票数据')">🔄 刷新</button>
+                    <button class="action-btn" onclick="refreshVotes(); showToast('已刷新投票数据')">刷新</button>
                     <button class="action-btn" onclick="copyShareLink()">复制投票链接</button>
-                    <button class="action-btn" onclick="exportResults()">导出结果</button>
                     <button class="action-btn primary" onclick="resetMyVote()">重新投票</button>
                 </div>
             </div>
@@ -1720,7 +1772,7 @@
         }
 
         // ===== 配置 =====
-        const TOTAL_VOTERS = 20;
+        const TOTAL_VOTERS = 16;
         const USER_KEY = 'fanTogether_user';
         const PLAN_NAMES = { 1: '阿那亚 · 海边文艺慢旅行', 2: '撒索民宿 · 山野松弛局', 3: '新疆伊犁 · 风景公路计划' };
 
@@ -1792,7 +1844,6 @@
                 })
                 .subscribe((status, err) => {
                     console.log('[Realtime] 订阅状态:', status, err || '');
-                    updateRealtimeIndicator(status);
                     if (status === 'SUBSCRIBED') {
                         realtimeConnected = true;
                         console.log('[Realtime] ✅ 实时连接成功');
@@ -1846,24 +1897,6 @@
                 }
             }
         });
-
-        // 更新连接状态指示器
-        function updateRealtimeIndicator(status) {
-            const el = document.getElementById('realtimeStatus');
-            const textEl = document.getElementById('realtimeText');
-            if (!el || !textEl) return;
-
-            el.classList.remove('connected', 'polling');
-            if (status === 'SUBSCRIBED') {
-                el.classList.add('connected');
-                textEl.textContent = '实时同步';
-            } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT' || status === 'CLOSED') {
-                el.classList.add('polling');
-                textEl.textContent = '轮询模式';
-            } else {
-                textEl.textContent = '连接中...';
-            }
-        }
 
         // ===== 姓名弹窗 =====
         function showNameModal() {
@@ -2098,34 +2131,6 @@
                 document.body.removeChild(input);
                 showToast('投票链接已复制！发给同事即可实时看到投票');
             });
-        }
-
-        async function exportResults() {
-            const voters = await fetchAllVotes();
-            const lines = ['团建投票结果 - FAN Together 2026', '='.repeat(40), ''];
-
-            for (let i = 1; i <= 3; i++) {
-                const planVoters = Object.keys(voters).filter(name => voters[name] === i);
-                lines.push(`📋 ${PLAN_NAMES[i]}（${planVoters.length}票）`);
-                if (planVoters.length > 0) {
-                    planVoters.forEach(name => lines.push(`   - ${name}`));
-                } else {
-                    lines.push('   (暂无)');
-                }
-                lines.push('');
-            }
-
-            const total = Object.keys(voters).length;
-            lines.push(`总计：${total} / ${TOTAL_VOTERS} 人已投票`);
-
-            const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = '团建投票结果.txt';
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('投票结果已导出！');
         }
 
         // ===== 工具函数 =====
