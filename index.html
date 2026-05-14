@@ -140,16 +140,17 @@
             position: absolute;
             border-radius: 14px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
-            animation: avatar-breathe 6s ease-in-out infinite;
+            animation: avatar-breathe 6s ease-in-out infinite both;
             will-change: transform;
             object-fit: contain;
             width: 42px !important;
+            transform: scale(0.71);
         }
 
-        /* 30/42 ≈ 0.71, 52/42 ≈ 1.24 */
+        /* 30/42 ≈ 0.71, 42/42 = 1.0 */
         @keyframes avatar-breathe {
             0%, 100% { transform: scale(0.71); }
-            50% { transform: scale(1.24); }
+            50% { transform: scale(1.0); }
         }
 
         .hero-visual {
@@ -1239,7 +1240,7 @@
 
             @keyframes avatar-breathe {
                 0%, 100% { transform: scale(0.5); }
-                50% { transform: scale(0.86); }
+                50% { transform: scale(0.72); }
             }
 
             .hero-visual img {
@@ -1400,21 +1401,21 @@
         <!-- 散落头像 -->
         <div class="hero-avatars">
             <img class="hero-avatar" src="assets/avatars/1.png" alt="" style="left:1%;top:8%;animation-delay:0s;">
-            <img class="hero-avatar" src="assets/avatars/2.png" alt="" style="left:8%;top:28%;animation-delay:0.375s;">
-            <img class="hero-avatar" src="assets/avatars/3.png" alt="" style="left:3%;top:55%;animation-delay:0.75s;">
+            <img class="hero-avatar" src="assets/avatars/2.png" alt="" style="left:6%;top:28%;animation-delay:0.375s;">
+            <img class="hero-avatar" src="assets/avatars/3.png" alt="" style="left:2%;top:55%;animation-delay:0.75s;">
             <img class="hero-avatar" src="assets/avatars/4.png" alt="" style="left:1%;top:78%;animation-delay:1.125s;">
-            <img class="hero-avatar" src="assets/avatars/5.png" alt="" style="left:14%;top:10%;animation-delay:1.5s;">
-            <img class="hero-avatar" src="assets/avatars/6.png" alt="" style="left:10%;top:72%;animation-delay:1.875s;">
-            <img class="hero-avatar" src="assets/avatars/7.png" alt="" style="left:18%;top:48%;animation-delay:2.25s;">
-            <img class="hero-avatar" src="assets/avatars/8.png" alt="" style="left:15%;top:88%;animation-delay:2.625s;">
+            <img class="hero-avatar" src="assets/avatars/5.png" alt="" style="left:11%;top:10%;animation-delay:1.5s;">
+            <img class="hero-avatar" src="assets/avatars/6.png" alt="" style="left:8%;top:72%;animation-delay:1.875s;">
+            <img class="hero-avatar" src="assets/avatars/7.png" alt="" style="left:14%;top:48%;animation-delay:2.25s;">
+            <img class="hero-avatar" src="assets/avatars/8.png" alt="" style="left:11%;top:88%;animation-delay:2.625s;">
             <img class="hero-avatar" src="assets/avatars/9.png" alt="" style="right:1%;top:6%;animation-delay:3s;">
-            <img class="hero-avatar" src="assets/avatars/10.png" alt="" style="right:10%;top:22%;animation-delay:3.375s;">
+            <img class="hero-avatar" src="assets/avatars/10.png" alt="" style="right:7%;top:22%;animation-delay:3.375s;">
             <img class="hero-avatar" src="assets/avatars/11.png" alt="" style="right:2%;top:45%;animation-delay:3.75s;">
-            <img class="hero-avatar" src="assets/avatars/12.png" alt="" style="right:14%;top:60%;animation-delay:4.125s;">
+            <img class="hero-avatar" src="assets/avatars/12.png" alt="" style="right:11%;top:60%;animation-delay:4.125s;">
             <img class="hero-avatar" src="assets/avatars/13.png" alt="" style="right:1%;top:75%;animation-delay:4.5s;">
-            <img class="hero-avatar" src="assets/avatars/14.png" alt="" style="right:16%;top:85%;animation-delay:4.875s;">
-            <img class="hero-avatar" src="assets/avatars/15.png" alt="" style="right:6%;top:10%;animation-delay:5.25s;">
-            <img class="hero-avatar" src="assets/avatars/16.png" alt="" style="right:18%;top:40%;animation-delay:5.625s;">
+            <img class="hero-avatar" src="assets/avatars/14.png" alt="" style="right:13%;top:85%;animation-delay:4.875s;">
+            <img class="hero-avatar" src="assets/avatars/15.png" alt="" style="right:5%;top:10%;animation-delay:5.25s;">
+            <img class="hero-avatar" src="assets/avatars/16.png" alt="" style="right:15%;top:40%;animation-delay:5.625s;">
         </div>
 
         <div class="hero-eyebrow animate-in">Team Building 2026</div>
